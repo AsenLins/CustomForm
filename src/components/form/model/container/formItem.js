@@ -1,6 +1,6 @@
-const ContainerBase = require("../base/base");
+const ContainerBase = require("./containerBase");
 
-class FormItem extends Base {
+class FormItem extends ContainerBase {
     constructor(option) {
         super(option);
         this.constrolList = {};

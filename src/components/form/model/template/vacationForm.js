@@ -1,6 +1,6 @@
-const Form = require("../components/form/model/container/form");
-const FromItem = require("../components/form/model/container/formItem");
-const Controls = require("../components/form/model/controls/index");
+const Form = require("../container/form");
+const FromItem = require("../container/formItem");
+const Controls = require("../controls/index");
 
 
 

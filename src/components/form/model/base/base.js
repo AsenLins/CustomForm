@@ -1,6 +1,6 @@
 class formControl {
     constructor(option) {
-        this._controlId = option._controlId;
+        this._id = option._id;
         this.name = option.name;
         if (option.title !== undefined) {
             this.title = option.title;

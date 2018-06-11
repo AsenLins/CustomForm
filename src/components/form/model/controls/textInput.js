@@ -1,4 +1,4 @@
-const Base = require("../base/Base");
+const Base = require("../base/base");
 
 class TextInput extends Base {
     constructor(option) {

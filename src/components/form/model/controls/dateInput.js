@@ -1,6 +1,6 @@
-const Input = require("../base/base");
+const Base = require("../base/base");
 
-class DateInput extends Input {
+class DateInput extends Base {
     constructor(option) {
         super(option);
         this.type = "date";

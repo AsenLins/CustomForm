@@ -7,4 +7,4 @@ class DateAndTimeInput extends Base {
     }
 }
 
-module.exports = DateInput;
+module.exports = DateAndTimeInput;

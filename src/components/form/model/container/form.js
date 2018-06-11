@@ -5,6 +5,9 @@ class Form extends ContainerBase {
         super(option);
         this.action = option.action;
         this.method = option.method;
-        this.formControl = {};
+        this.constrolList = {};
     }
+
 }
+
+module.exports = Form;
