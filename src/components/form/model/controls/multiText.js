@@ -1,4 +1,5 @@
-const Base = require("../base/base");
+import { Base } from '../base/base';
+
 
 class MultiText extends Base {
     constructor(option) {
@@ -7,4 +8,4 @@ class MultiText extends Base {
     }
 }
 
-module.exports = MultiText;
+export { MultiText };

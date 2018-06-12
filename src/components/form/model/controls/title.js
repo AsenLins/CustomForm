@@ -1,4 +1,4 @@
-const Base = require("../base/base");
+import { Base } from '../base/base';
 
 class Title extends Base {
     constructor(option) {
@@ -8,4 +8,4 @@ class Title extends Base {
     }
 }
 
-module.exports = Title;
+export { Title };

@@ -1,4 +1,5 @@
-const Base = require("../base/base");
+import { Base } from '../base/base';
+
 
 class TextInput extends Base {
     constructor(option) {
@@ -7,4 +8,4 @@ class TextInput extends Base {
     }
 }
 
-module.exports = TextInput;
+export { TextInput };

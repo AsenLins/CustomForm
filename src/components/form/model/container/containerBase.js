@@ -1,4 +1,4 @@
-const Base = require("../base/base");
+import { Base } from '../base/base';
 
 /**
  *
@@ -6,6 +6,8 @@ const Base = require("../base/base");
  * @class ContainerBase
  * @extends {Base}
  */
+
+
 class ContainerBase extends Base {
     constructor(option) {
         super(option);
@@ -39,4 +41,4 @@ class ContainerBase extends Base {
     }
 }
 
-module.exports = ContainerBase;
+export { ContainerBase };

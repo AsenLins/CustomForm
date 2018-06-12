@@ -1,26 +1,29 @@
-const CheckBoxGroup = require("./checkBoxGroup");
-const ControlList = require("./controlList");
-const DateAndTimeInput = require("./dateAndTimeInput");
-const DateInput = require("./dateInput");
-const MoneyInput = require("./moneyInput");
-const MultiText = require("./multiText");
-const NumInput = require("./numInput");
-const RadioBoxGroup = require("./radioBoxGroup");
-const TextInput = require("./textInput");
-const Titile = require("./titile");
+import { CheckBoxGroup } from './checkBoxGroup';
+import { ControlList } from './controlList';
+import { DateAndTimeInput } from './dateAndTimeInput';
+import { DateInput } from './dateInput';
+import { MoneyInput } from './moneyInput';
+import { MultiText } from './multiText';
+import { NumInput } from './numInput';
+import { RadioBoxGroup } from './radioBoxGroup';
+import { TextInput } from './textInput';
+import { Title } from './title';
+import { Label } from './label';
+import { FileUpload } from './fileUpload';
 
 
-console.log("CheckBoxGroup", CheckBoxGroup);
 
-module.exports = {
-    CheckBoxGroup: CheckBoxGroup,
-    ControlList: ControlList,
-    DateAndTimeInput: DateAndTimeInput,
-    DateInput: DateInput,
-    MoneyInput: MoneyInput,
-    MultiText: MultiText,
-    NumInput: NumInput,
-    RadioBoxGroup: RadioBoxGroup,
-    TextInput: TextInput,
-    Titile: Titile
+export var Controls = {
+    CheckBoxGroup,
+    ControlList,
+    DateAndTimeInput,
+    DateInput,
+    MoneyInput,
+    MultiText,
+    NumInput,
+    RadioBoxGroup,
+    TextInput,
+    Title,
+    Label,
+    FileUpload
 }

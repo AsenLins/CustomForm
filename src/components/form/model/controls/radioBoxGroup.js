@@ -1,10 +1,11 @@
-const Base = require("../base/base");
+import { Base } from '../base/base';
 
-class RadioGroup extends Base {
+
+class RadioBoxGroup extends Base {
     constructor(option) {
         super(option);
         this.checkBoxList = [];
     }
 }
 
-module.exports = RadioGroup;
+export { RadioBoxGroup };

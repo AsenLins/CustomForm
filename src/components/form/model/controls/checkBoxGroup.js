@@ -1,4 +1,4 @@
-const Base = require("../base/base");
+import { Base } from '../base/base';
 class CheckBoxGroup extends Base {
     constructor(option) {
         super(option);
@@ -6,4 +6,4 @@ class CheckBoxGroup extends Base {
     }
 }
 
-module.exports = CheckBoxGroup;
+export { CheckBoxGroup };

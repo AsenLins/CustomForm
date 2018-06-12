@@ -1,4 +1,4 @@
-const Base = require("../base/base");
+import { Base } from '../base/base';
 
 class DateAndTimeInput extends Base {
     constructor(option) {
@@ -7,4 +7,4 @@ class DateAndTimeInput extends Base {
     }
 }
 
-module.exports = DateAndTimeInput;
+export { DateAndTimeInput };

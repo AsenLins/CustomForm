@@ -1,11 +1,10 @@
 import { Base } from '../base/base';
 
-
-class NumInput extends Base {
+class FileUpload extends Base {
     constructor(option) {
         super(option);
-        this.type = "number";
+        this.type = "fileUpload";
     }
 }
 
-export { NumInput };
+export { FileUpload };

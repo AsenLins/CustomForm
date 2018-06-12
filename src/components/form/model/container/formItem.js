@@ -1,4 +1,5 @@
-const ContainerBase = require("./containerBase");
+import { ContainerBase } from './containerBase'
+
 
 class FormItem extends ContainerBase {
     constructor(option) {
@@ -7,4 +8,4 @@ class FormItem extends ContainerBase {
     }
 }
 
-module.exports = FormItem;
+export { FormItem };

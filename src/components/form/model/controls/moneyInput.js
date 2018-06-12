@@ -1,4 +1,5 @@
-const Base = require("../base/base");
+import { Base } from '../base/base';
+
 
 class MoneyInput extends Base {
     constructor(option) {
@@ -7,4 +8,4 @@ class MoneyInput extends Base {
     }
 }
 
-module.exports = MoneyInput;
+export { MoneyInput };

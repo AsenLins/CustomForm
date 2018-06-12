@@ -1,4 +1,4 @@
-class formControl {
+class Base {
     constructor(option) {
         this._id = option._id;
         this.name = option.name;
@@ -11,5 +11,4 @@ class formControl {
     }
 }
 
-
-module.exports = formControl;
+export { Base }
