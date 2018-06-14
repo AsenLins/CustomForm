@@ -14,12 +14,13 @@ class ContainerBase extends Base {
     }
 
     add(control) {
-        this.constrolList[control._id] = control;
+        this.constrolList.push(control);
         return this;
     }
 
-    remove(_id) {
-        delete this[_id];
+    remove(index) {
+        this.constrolList.remove(index);
+        //delete this[_id];
         return this;
     }
 

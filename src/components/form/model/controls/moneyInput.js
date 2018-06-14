@@ -1,7 +1,7 @@
-import { Base } from '../base/base';
+import { ControlBase } from './controlBase';
 
 
-class MoneyInput extends Base {
+class MoneyInput extends ControlBase {
     constructor(option) {
         super(option);
         this.type = "money";

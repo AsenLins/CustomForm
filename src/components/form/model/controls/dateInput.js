@@ -1,6 +1,6 @@
-import { Base } from '../base/base';
+import { ControlBase } from './controlBase';
 
-class DateInput extends Base {
+class DateInput extends ControlBase {
     constructor(option) {
         super(option);
         this.type = "date";

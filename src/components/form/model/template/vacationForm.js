@@ -1,47 +1,53 @@
 /**
- * 加班申请模板
+ * 请假申请模板
  */
+
 import { Form } from "../container/form";
 import { FormItem } from "../container/formItem";
 import { Controls } from "../controls/index";
 
-var guid = require("guid");
 
-
-class OverTimeForm {
+class VacationForm {
     constructor(option) {
-        var OverTimeForm = new Form({
-                name: "overTimeForm",
+        var vacationForm = new Form({
+                name: "vacationForm",
                 method: "POST",
                 enctype: "multipart/form-data"
             })
             .add(new FormItem({
 
                 })
+                .add(new Controls.RadioBoxGroup({
+                    title: "请假类型"
+                }))
+
+            )
+            .add(new FormItem({})
                 .add(new Controls.DateAndTimeInput({
                     title: "开始时间"
                 }))
                 .add(new Controls.DateAndTimeInput({
                     title: "结束时间"
                 }))
-                .add(new Controls.Label({
-                    title: "加班时长"
+                .add(new Controls.DateAndTimeInput({
+                    title: "请假时长"
+                }))
+            )
+            .add(new FormItem({})
+                .add(new Controls.MultiText({
+                    title: "请假事由"
                 }))
             )
             .add(new FormItem({})
                 .add(new Controls.FileUpload({
-                    title: "附件"
+                    title: "说明附件"
                 }))
             )
-            .add(new FormItem({})
-                .add(new Controls.Title({
-                    text: "审批采用会签形式，即需要选中的审批人均审批通过单据才算审批通过"
-                }))
-            )
-        return OverTimeForm;
+
+        return vacationForm;
     }
 }
 
 
 
-export { OverTimeForm }
+export { VacationForm }

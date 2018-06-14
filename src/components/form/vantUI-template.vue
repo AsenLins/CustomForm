@@ -15,8 +15,12 @@
 
 <script>
 
-    import {OverTimeForm} from "./model/template/overTimeForm";
-    console.log(new OverTimeForm());
+    import {templateFactory} from "./model/template/templateFactory";
+    console.log("overTimeForm",templateFactory["overTimeForm"]());
+    console.log("vacationForm",templateFactory["vacationForm"]());
+    console.log("travelExpensesForm",templateFactory["travelExpensesForm"]());
+    
+
     //import {Base} from './model/base/base'
     //console.log("Base",Base);
 

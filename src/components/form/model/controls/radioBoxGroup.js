@@ -1,7 +1,6 @@
-import { Base } from '../base/base';
+import { ControlBase } from './controlBase';
 
-
-class RadioBoxGroup extends Base {
+class RadioBoxGroup extends ControlBase {
     constructor(option) {
         super(option);
         this.checkBoxList = [];

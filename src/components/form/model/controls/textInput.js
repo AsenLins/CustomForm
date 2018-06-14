@@ -1,7 +1,7 @@
-import { Base } from '../base/base';
+import { ControlBase } from './controlBase';
 
 
-class TextInput extends Base {
+class TextInput extends ControlBase {
     constructor(option) {
         super(option);
         this.type = "text";

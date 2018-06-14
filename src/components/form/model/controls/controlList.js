@@ -1,6 +1,6 @@
-import { Base } from '../base/base';
+import { ControlBase } from './controlBase';
 
-class ControlList extends Base {
+class ControlList extends ControlBase {
     constructor(option) {
         super(option);
         this.list = [];

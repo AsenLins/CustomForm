@@ -1,6 +1,6 @@
-import { Base } from '../base/base';
+import { ControlBase } from './controlBase';
 
-class FileUpload extends Base {
+class FileUpload extends ControlBase {
     constructor(option) {
         super(option);
         this.type = "fileUpload";

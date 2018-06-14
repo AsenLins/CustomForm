@@ -1,6 +1,7 @@
-import { Base } from '../base/base';
+import { ControlBase } from './controlBase';
 
-class Label extends Base {
+
+class Label extends ControlBase {
     constructor(option) {
         super(option);
         this.type = "title";

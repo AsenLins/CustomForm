@@ -1,6 +1,13 @@
+var guid = require("guid");
+
 class Base {
     constructor(option) {
-        this._id = option._id;
+        if (option._id != undefined) {
+            this._id = option._id;
+        } else {
+            this._id = guid.raw();
+        }
+
         this.name = option.name;
         if (option.title !== undefined) {
             this.title = option.title;
