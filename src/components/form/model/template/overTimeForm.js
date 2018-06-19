@@ -5,7 +5,6 @@ import { Form } from "../container/form";
 import { FormItem } from "../container/formItem";
 import { Controls } from "../controls/index";
 
-var guid = require("guid");
 
 
 class OverTimeForm {

@@ -12,6 +12,10 @@ import { Label } from './label';
 import { FileUpload } from './fileUpload';
 
 
+/**导入业务组件 */
+import { BNDateTime } from './buinessControl/BNDateTime';
+
+
 
 export var Controls = {
     CheckBoxGroup,
@@ -25,5 +29,8 @@ export var Controls = {
     TextInput,
     Title,
     Label,
-    FileUpload
+    FileUpload,
+    BN: {
+        BNDateTime
+    }
 }
