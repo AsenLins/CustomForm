@@ -13,9 +13,11 @@ class Base {
         if (option.title !== undefined) {
             this.title = option.title;
         }
+
         if (option.title !== undefined && option.name === undefined) {
             this.name = option.title;
         }
+
         if (option.value !== undefined) {
             this.value = option.value;
         }

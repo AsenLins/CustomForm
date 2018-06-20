@@ -3,15 +3,24 @@ import { Base } from '../base/base';
 class ControlBase extends Base {
     constructor(option) {
         super(option);
-        this.verify = null;
-        this.print = false;
+        this.coreData = {
+            verify: [],
+            attrs: {},
+            data: {}
+        }
 
     }
     setVerify(verify) {
-        this.verify = verify;
+        this.coreData.verify.push(verify);
+        return this;
     }
-    setPrint(print) {
-        this.print = print;
+    setAttrs(attrs) {
+        this.coreData.attrs = attrs;
+        return this;
+    }
+    setData(data) {
+        this.targetFrom.coreData.data = data;
+        return this;
     }
 
 }

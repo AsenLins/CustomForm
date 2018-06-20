@@ -1,3 +1,4 @@
+/*
 const Form = require("../components/form/model/container/form");
 const FromItem = require("../components/form/model/container/formItem");
 const Controls = require("../components/form/model/controls/index");
@@ -33,3 +34,4 @@ var form = new Form({
 
 var form4 = form.find("4");
 console.log(form4);
+*/

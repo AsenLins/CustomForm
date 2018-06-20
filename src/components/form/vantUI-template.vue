@@ -1,6 +1,17 @@
 <template>
-    <div class="c-form-wrap">
-        <van-nav-bar class="c-form-title" title="标题"/>      
+        <div class="c-form-wrap">
+            3333333434234234234234234
+
+        <van-nav-bar class="c-form-title" title="标题"/>   
+        <form :action="form.action" :method="form.method" :enctype="form.enctype">
+            <van-cell-group class="c-form-item" v-for="item in form.constrolList" :key="item._id" >
+                
+            </van-cell-group>
+        </form>
+
+
+
+        <!--
         <van-cell-group class="c-form-item">
             <van-field v-model="value" placeholder="请输入用户名" />
             <van-field v-model="value" placeholder="请输入用户名" />
@@ -10,6 +21,7 @@
         <van-cell-group class="c-form-item">
             <van-field v-model="value" placeholder="请输入用户名" />
         </van-cell-group>
+        -->
     </div>
 </template>
 
@@ -38,21 +50,10 @@
     //import OverTimeForm from './model/template/OverTimeForm.js'
 
     export default {
+        name:"customform",
         data(){
             return{
-                options: [
-                    '公章', '合同章'
-                ],
-                form: {
-                    input: '',
-                    select: '',
-                    date: '',
-                    radio: '',
-                    checkbox: [],
-                    switch: false,
-                    slider: 30,
-                    textarea: ''
-                }
+                form:templateFactory["overTimeForm"]() 
             }
         },
     }

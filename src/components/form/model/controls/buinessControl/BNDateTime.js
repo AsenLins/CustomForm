@@ -5,6 +5,7 @@ import { ControlBase } from '../controlBase';
  */
 class BNDateTime extends ControlBase {
     constructor(option) {
+        super(option);
         this.type = "BNDateTime"
         this.isImportant = true;
     }
