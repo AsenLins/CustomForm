@@ -1,50 +1,13 @@
 /* eslint-disable react/react-in-jsx-scope */
-
 import { storiesOf } from '@storybook/vue';
 import { action } from '@storybook/addon-actions';
 import { linkTo } from '@storybook/addon-links';
 
-import MyButton from './MyButton.vue';
-import Welcome from './Welcome.vue';
+import vantUIForm from '../components/form/vantUIForm.vue';
 
-
-import Form from '../components/form/vantUI-template.vue';
-console.log(Form);
-
-storiesOf('Welcome', module).add('to Storybook', () => ({
-    components: { Welcome },
-    template: '<welcome :showApp="action" />',
+storiesOf("表单设计器", module).add("表单容器Vant", () => ({
+    components: { vantUIForm },
+    template: '<vantUIForm ></vantUIForm>',
     methods: { action: linkTo('Button') },
-}));
 
-
-storiesOf("表单设计器", module).add("to test", () => ({
-    components: { Welcome },
-    template: '<welcome />',
-    methods: { action: linkTo('Button') }
-
-}));
-
-
-/*
-storiesOf('Button', module)
-  .add('with text', () => ({
-    components: { MyButton },
-    template: '<my-button @click="action">Hello Button</my-button>',
-    methods: { action: action('clicked') },
-  }))
-  .add('with JSX', () => ({
-    components: { MyButton },
-    render() {
-      return <my-button onClick={this.action}>With JSX</my-button>;
-    },
-    methods: { action: linkTo('clicked') },
-  }))
-  .add('with some emoji', () => ({
-    components: { MyButton },
-    template:
-      '<my-button @click="action"><span role="img" aria-label="so cool">😀 😎 👍 💯</span></my-button>',
-    methods: { action: action('clicked') },
-  }));
-*/
-/* eslint-enable react/react-in-jsx-scope */
+}))

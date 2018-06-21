@@ -7,8 +7,6 @@ class Base {
         } else {
             this._id = guid.raw();
         }
-        /*是否业务组件*/
-        this.isImportant = false;
         this.name = option.name;
         if (option.title !== undefined) {
             this.title = option.title;

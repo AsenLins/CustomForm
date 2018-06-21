@@ -11,10 +11,15 @@ import { Base } from '../base/base';
 class ContainerBase extends Base {
     constructor(option) {
         super(option);
+        /*是否业务组件*/
+        this.isImportant = false;
+
     }
 
     add(control) {
+        control.parent = this;
         this.constrolList.push(control);
+
         return this;
     }
 
@@ -39,6 +44,9 @@ class ContainerBase extends Base {
             }
         }
         return listArray;
+    }
+    setImportant() {
+        this.isImportant = true;
     }
 }
 

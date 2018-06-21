@@ -1,6 +1,65 @@
 <template>
   <div class="main">
-    <div>this.is.store</div>
+    <h1>Welcome to STORYBOOK</h1>
+    <p>
+      This is a UI component dev environment for your app.
+    </p>
+    <p>
+      We've added some basic stories inside the
+      <br />
+      <code class="code">src/stories</code>
+      <br />
+      directory.
+      <br />
+      A story is a single state of one or more UI components. You can have as many stories as
+      you want.
+      <br />
+      (Basically a story is like a visual test case.)
+    </p>
+    <p>
+      See these sample
+      <br />
+      <a class="link" @click="onClick" role="button" tabIndex="0">stories</a>
+      <br />
+      for a component called
+      <br />
+      <code class="code">Button</code>
+      .
+    </p>
+    <p>
+      Just like that, you can add your own components as stories.
+      <br />
+      You can also edit those components and see changes right away.
+      <br />
+      (Try editing the <code class="code">Button</code> component
+      located at <code class="code">src/stories/Button.js</code>.)
+    </p>
+    <p>
+      This is just one thing you can do with Storybook.
+      <br />
+      Have a look at the
+      <br />
+      <a
+        class="link"
+        href="https://github.com/storybooks/storybook"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Storybook
+      </a>
+      <br />
+      repo for more information.
+    </p>
+    <p class="note">
+      <b>NOTE:</b>
+      <br />
+      Have a look at the
+      <br />
+      <code class="code">.storybook/webpack.config.js</code>
+      <br />
+      to add webpack
+      loaders and plugins you are using in this project.
+    </p>
   </div>
 </template>
 
@@ -9,9 +68,7 @@
 
   export default {
     name: 'welcome',
-    data(){
-      return
-    },
+
     props: {
       showApp: {
         type: Function,

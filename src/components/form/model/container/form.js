@@ -7,6 +7,7 @@ class Form extends ContainerBase {
         this.method = option.method;
         this.enctype = option.enctype;
         this.constrolList = [];
+        this.title = option.title;
     }
 
 }
