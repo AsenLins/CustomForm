@@ -8,6 +8,10 @@ class Form extends ContainerBase {
         this.enctype = option.enctype;
         this.constrolList = [];
         this.title = option.title;
+        this.submitText = "提交申请";
+        if (option.submitText !== undefined) {
+            this.submitText = option.submitText;
+        }
     }
 
 }

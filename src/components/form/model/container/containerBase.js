@@ -13,7 +13,6 @@ class ContainerBase extends Base {
         super(option);
         /*是否业务组件*/
         this.isImportant = false;
-
     }
 
     add(control) {

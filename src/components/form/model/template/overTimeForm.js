@@ -40,10 +40,7 @@ class OverTimeForm {
                 )
                 .add(new Controls.DateAndTimeInput({
                         title: "结束时间",
-                        notEmpty: true,
-                        model: {
-                            name: "endTime"
-                        }
+                        notEmpty: true
                     }).setVerify({
                         rules: [{
                                 tip: "结束时间不能为空",
