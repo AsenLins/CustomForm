@@ -17,19 +17,19 @@ class ContainerBase extends Base {
 
     add(control) {
         control.parent = this;
-        this.constrolList.push(control);
+        this.controlList.push(control);
 
         return this;
     }
 
     remove(index) {
-        this.constrolList.remove(index);
+        this.controlList.remove(index);
         //delete this[_id];
         return this;
     }
 
     find(_id) {
-        return this.constrolList[_id];
+        return this.controlList[_id];
     }
 
     findList(ids) {

@@ -1,9 +1,11 @@
-import { ControlBase } from './controlBase';
-
-class RadioBoxGroup extends ControlBase {
+import { ControlPanelBase } from './controlPanelBase';
+import { controlType } from './controlsTypeEnum';
+class RadioBoxGroup extends ControlPanelBase {
     constructor(option) {
         super(option);
-        this.checkBoxList = [];
+        this.show = false;
+        this.vmodel = [];
+        this.type = controlType.radioBoxGroup
     }
 }
 

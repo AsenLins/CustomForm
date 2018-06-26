@@ -1,8 +1,11 @@
-import { ControlBase } from './controlBase';
-class CheckBoxGroup extends ControlBase {
+import { ControlPanelBase } from './controlPanelBase';
+import { controlType } from './controlsTypeEnum';
+class CheckBoxGroup extends ControlPanelBase {
     constructor(option) {
         super(option);
-        this.checkBoxList = [];
+        this.show = false;
+        this.vmodel = [];
+        this.type = controlType.checkBoxGroup;
     }
 }
 

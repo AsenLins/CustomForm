@@ -4,7 +4,9 @@
 
 const path = require('path')
 var HtmlWebpackPlugin = require('html-webpack-plugin');
-module.exports = {
+const vuxLoader = require('vux-loader')
+
+const wpConfig = {
     dev: {
 
         // Paths
@@ -73,3 +75,13 @@ module.exports = {
         bundleAnalyzerReport: process.env.npm_config_report
     }
 }
+
+
+
+/*
+module.exports = wpConfig
+*/
+
+module.exports = vuxLoader.merge(wpConfig, {
+    plugins: ['vux-ui']
+})

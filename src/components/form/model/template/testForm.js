@@ -51,14 +51,46 @@ class TestForm {
                 }))
             )
             .add(new FormItem({})
-                .add(new Controls.CheckBoxGroup({
-                    title: "测试CheckBox"
+                .add(new Controls.MoneyInput({
+                    title: "测试金额输入"
+                }))
+
+                .add(new Controls.NumInput({
+                    title: "测试数字输入"
+                }))
+                .add(new Controls.DateAndTimeInput({
+                    title: "测试时间（包时分秒）"
                 }))
             )
             .add(new FormItem({})
+                .add(new Controls.CheckBoxGroup({
+                        title: "测试CheckBoxGroup"
+                    })
+                    .add(new Controls.CheckBox({
+                        keyName: "复选一",
+                        value: "1"
+                    }))
+                    .add(new Controls.CheckBox({
+                        keyName: "复选二",
+                        value: "2"
+                    }))
+                )
+            )
+            .add(new FormItem({})
                 .add(new Controls.RadioBoxGroup({
-                    title: "测试radioBox"
-                }))
+                        title: "测试radioBoxGroup"
+                    })
+                    .add(new Controls.Radio({
+                            keyName: "单选一",
+                            value: "1"
+                        })
+
+                    )
+                    .add(new Controls.Radio({
+                        keyName: "单选二",
+                        value: "2"
+                    }))
+                )
             )
             .add(new FormItem({})
                 .add(new Controls.Label({

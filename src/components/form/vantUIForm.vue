@@ -1,30 +1,88 @@
 <template>
         <div class="c-form-wrap">
-         <van-nav-bar class="c-form-title" :title="form.title"/>   
+         <van-nav-bar class="c-form-title" :title="title"/>   
         
         <form :action="form.action" :method="form.method" :enctype="form.enctype">
 
-            <van-cell-group class="c-form-item" v-for="item in form.constrolList" :key="item._id" >
+            <van-cell-group class="c-form-item" v-for="item in form.controlList" :key="item._id" >
                 
-                             <template v-for="control in item.constrolList">
+                             <template v-for="control in item.controlList">
                                     <!--文本控件-->
+                                    <van-field v-if="control.type==='text'"  :label="control.title"   v-model="control.vmodel"  :placeholder="control.placeholder" />
+                                    
+                                    <!--金额控件-->
+                                    <van-field v-if="control.type==='money'" :label="control.title"  type="number"  v-model="control.vmodel"  :placeholder="control.placeholder" />
 
+                                    <!--数字控件-->
+                                    <van-field v-if="control.type==='number'" :label="control.title" type="number" v-model="control.vmodel"  :placeholder="control.placeholder" />
 
-                                    <!--日期控件-->
-                                     <van-row  :key="control._id" v-if="control.type==='dateAndTime'">
-                                        <van-cell  :title="control.title" :value="control.placeholder" is-link />
+                                    <!--多选框-->
+                                     <van-row  :key="control._id" v-else-if="control.type==='checkBoxGroup'">
+                                         <van-cell v-on:click="show(control)" :title="control.title" :value="control.placeholder" is-link />
+                                         <van-actionsheet v-model="control.show" :title="control.title">
+                                            <van-checkbox-group @change="GroupItemSelect(control)" v-model="control.vmodel">
+                                                
+                                                <van-cell-group>
+                                                    <van-cell v-for="checkbox in control.controlList" :title="checkbox.keyName" :key="checkbox._id">
+                                                         <van-checkbox :name="checkbox.keyName" />
+                                                    </van-cell>
+                                                </van-cell-group>
+                                         
+                                                    <van-cell>
+                                                        <van-button type="primary" bottom-action>确认</van-button>  
+                                                    </van-cell>                                             
+                                                </van-checkbox-group>
+                                        </van-actionsheet>                                         
+                                     </van-row>
+
+                                     <!--单选框-->
+                                     <van-row  :key="control._id" v-else-if="control.type==='radioBoxGroup'">
+                                        <van-cell v-on:click="show(control)"  :title="control.title" :value="control.placeholder" is-link />
+                                            <van-actionsheet v-model="control.show" :title="control.title">
+                                                <van-radio-group v-model="control.vmodel">
+                                                    <van-cell-group>
+                                                        <van-cell v-for="radiobox in control.controlList" :title="radiobox.keyName" clickable :key="radiobox._id">
+                                                             <van-radio :name="radiobox.keyName" />
+                                                        </van-cell>
+                                                    </van-cell-group>
+                                                </van-radio-group>  
+                                                <van-cell>
+                                                    <van-button type="primary" bottom-action>确认</van-button>  
+                                                </van-cell>                                             
+                                            </van-actionsheet>
+                                     </van-row>
+                                
+                                    <!--日期控件 年月日-时分-秒-->
+                                     <van-row  :key="control._id" v-else-if="control.type==='dateAndTime'">
+                                        <van-cell @click="show(control)"  :title="control.title" :value="control.placeholder" is-link />
+                                        <van-actionsheet v-model="control.show" :title="control.title">
+                                            <van-datetime-picker
+                                                v-model="control.vmodel"
+                                                type="datetime"
+                                            />
+                                        </van-actionsheet>                                        
+                                     </van-row>
+
+                                     <!--日期控件 年-月-日-->
+                                       <van-row  :key="control._id" v-else-if="control.type==='date'">
+                                        <van-cell  @click="show(control)" :title="control.title" :value="control.placeholder" is-link />
                                         <van-actionsheet v-model="control.show" :title="control.title">
                                             <van-datetime-picker
                                                 v-model="control.vmodel"
                                                 type="date"
                                             />
-                                        </van-actionsheet>                                        
-                                     </van-row>
+                                        
+                                        
+                                        </van-actionsheet>  
 
+
+
+                                     </van-row>                                   
+                                
                                      <!--多文本框-->
                                     <van-field
                                     :key="control._id"
-                                        v-if="control.type==='multiText'"
+                                        v-else-if="control.type==='multiText'"
                                         v-model="control.vmodel"
                                         :label="control.title"
                                         type="textarea"
@@ -34,30 +92,24 @@
                                     />
 
                                     <!--附件-->
-                                    <van-cell-group  :key="control._id" v-if="control.type==='fileUpload'">
+                                    <van-cell-group  :key="control._id" v-else-if="control.type==='fileUpload'">
                                         <van-row>
                                               <van-cell :value="control.title" />   
                                         </van-row>
                                         <van-row>
 
                                             <van-cell :value="control.title" >
-                                                <van-uploader style="border:1px solid #dfdfdf; padding:10px; padding-top:8px; border-radius:4px; padding-bottom:3px;">
-                                                    <van-icon name="add-o" style="color:#dfdfdf;font-size:20px;margin-top:2px;" />
+                                                <van-uploader class="v-upload">
+                                                    <van-icon class="v-icon" name="add-o" style="" />
                                                 </van-uploader>                                               
                                             </van-cell>
 
-                                            <!--
-                                            <van-cell :value="control.title" >
-                                                <van-uploader style="border:1px solid #dfdfdf; padding:10px; padding-top:8px; border-radius:4px; padding-bottom:3px;" :after-read="onRead">
-                                                    <van-icon name="add-o" style="color:#dfdfdf;font-size:20px;margin-top:2px;" />
-                                                </van-uploader>                                               
-                                            </van-cell>
-                                            -->  
                                         </van-row>
                                             
                                     </van-cell-group>
                              </template>
             </van-cell-group>
+
 
 
 
@@ -68,55 +120,26 @@
                     <van-button type="primary " bottom-action>提交申请</van-button>
             </van-cell>
         </van-cell-group> 
-        <!--
-        <van-cell-group class="c-form-item">
-            <van-field v-model="value" placeholder="请输入用户名" />
-            <van-field v-model="value" placeholder="请输入用户名" />
-            <van-field v-model="value" placeholder="请输入用户名" />
-        </van-cell-group>
 
-        <van-cell-group class="c-form-item">
-            <van-field v-model="value" placeholder="请输入用户名" />
-        </van-cell-group>
-        -->
     </div>
 </template>
 
 <script>
-    /*
-    import {templateFactory} from "./model/template/templateFactory";
-    
-    console.log("overTimeForm",templateFactory["overTimeForm"]());
-    console.log("vacationForm",templateFactory["vacationForm"]());
-    console.log("travelExpensesForm",templateFactory["travelExpensesForm"]());
-    console.log("testForm",templateFactory["testForm"]());
-    */
-    //import {Base} from './model/base/base'
-    //console.log("Base",Base);
-
-    //import {Form} from './model/container/form'
-
-    /*
-    import Form from './model/container/form';
-    console.log("from",Form);
-    import {OverTimeForm} from "./model/template/OverTimeForm"
-    */
- 
-
-
-   
-    //import OverTimeForm from './model/template/OverTimeForm.js'
 
     export default {
         name:"vantUIForm",
-        text:"444",
+        
         data(){
-
+            return{
+                show2:false,
+                testCheck:true,
+                testVal:['sam']
+            }
         },
 
         props: {
             form: Object,
-            text: String
+            title: String
         },
 
         mounted:function(){
@@ -130,7 +153,18 @@
             console.log("============created finish===========");
             console.log("data",this);
 
+        },
+        methods:{
+            show:function(control){
+                control.show=true;
+            },
+            GroupItemSelect:function(control){
+                console.log("你的复中的是：",control.vmodel.join(','));
+            }
         }
+
+
+
     }
 </script>
 
@@ -146,4 +180,19 @@
     .c-form-item{
         margin-top: 12px;
     }
+
+    .v-upload{
+        border:1px solid #dfdfdf; 
+        padding:10px; 
+        padding-top:8px; 
+        border-radius:4px; 
+        padding-bottom:3px;
+    }
+    .v-icon{
+        color:#dfdfdf;
+        font-size:20px;
+        margin-top:2px;
+    }
+
+
 </style>

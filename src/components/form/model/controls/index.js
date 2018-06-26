@@ -10,6 +10,8 @@ import { TextInput } from './textInput';
 import { Title } from './title';
 import { Label } from './label';
 import { FileUpload } from './fileUpload';
+import { CheckBox } from './checkBox';
+import { Radio } from './radio';
 
 
 /**导入业务组件 */
@@ -30,6 +32,8 @@ export var Controls = {
     Title,
     Label,
     FileUpload,
+    CheckBox,
+    Radio,
     BN: {
         BNDateTime
     }
