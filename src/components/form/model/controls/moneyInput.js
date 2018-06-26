@@ -1,10 +1,10 @@
 import { ControlBase } from './controlBase';
-
+import { controlType } from './controlsTypeEnum';
 
 class MoneyInput extends ControlBase {
     constructor(option) {
         super(option);
-        this.type = "money";
+        this.type = controlType.money;
     }
 }
 

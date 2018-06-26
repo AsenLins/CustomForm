@@ -1,9 +1,9 @@
 import { ControlBase } from './controlBase';
-
+import { controlType } from './controlsTypeEnum';
 class DateAndTimeInput extends ControlBase {
     constructor(option) {
         super(option);
-        this.type = "dateAndTime";
+        this.type = controlType.dateAndTime;
         this.show = false;
         this.placeholder = "";
         if (this.title != undefined) {

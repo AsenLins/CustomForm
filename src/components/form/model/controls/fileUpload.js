@@ -1,9 +1,9 @@
 import { ControlBase } from './controlBase';
-
+import { controlType } from './controlsTypeEnum';
 class FileUpload extends ControlBase {
     constructor(option) {
         super(option);
-        this.type = "fileUpload";
+        this.type = controlType.fileUpload;
     }
 }
 

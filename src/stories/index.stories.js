@@ -18,8 +18,14 @@ storiesOf("表单设计器", module).add("表单容器Vant", () => ({
         }
 
     },
+    template: '<vantUIForm @testFather="testFather"  :form="form" :title="title" ></vantUIForm>',
+    methods: {
+        testFather: function(control) {
+            console.log(control);
+            control.show = true;
 
-    template: '<vantUIForm :form="form" :title="title"></vantUIForm>',
+            //this.title = "441";
 
-    methods: { action: linkTo('Button') },
+        }
+    }
 }))

@@ -1,9 +1,9 @@
-import { ControlBase } from './controlBase';
-
-class ControlList extends ControlBase {
+import { ControlPanelBase } from './controlPanelBase';
+import { controlType } from './controlsTypeEnum';
+class ControlList extends ControlPanelBase {
     constructor(option) {
         super(option);
-        this.list = [];
+        this.type = controlType.controlList;
     }
 }
 
