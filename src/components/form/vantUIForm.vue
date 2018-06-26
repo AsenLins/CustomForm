@@ -111,7 +111,9 @@
         name:"vantUIForm",
         text:"444",
         data(){
-
+            return{
+                
+            }
         },
 
         props: {

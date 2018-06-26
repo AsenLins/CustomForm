@@ -14,11 +14,12 @@ storiesOf("表单设计器", module).add("表单容器Vant", () => ({
     data() {
         return {
             form: templateFactory["testForm"](),
-            text: "123"
+            title: "123"
         }
+
     },
 
-    template: '<vantUIForm></vantUIForm>',
+    template: '<vantUIForm :form="form" :title="title"></vantUIForm>',
 
     methods: { action: linkTo('Button') },
 }))
