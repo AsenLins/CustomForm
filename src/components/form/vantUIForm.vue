@@ -70,13 +70,8 @@
                                             <van-datetime-picker
                                                 v-model="control.vmodel"
                                                 type="date"
-                                            />
-                                        
-                                        
+                                            />                                       
                                         </van-actionsheet>  
-
-
-
                                      </van-row>                                   
                                 
                                      <!--多文本框-->
