@@ -1,6 +1,6 @@
 <template>
         <div class="c-form-wrap">
-         <van-nav-bar class="c-form-title" :title="title"/>   
+         <van-nav-bar class="c-form-title" :title="form.title"/>   
         
         <!--<form :action="form.action" :method="form.method" :enctype="form.enctype">-->
 
@@ -17,62 +17,17 @@
                                     <van-field :key="control._id" v-if="control.type==='number'" :label="control.title" type="number" v-model="control.vmodel"  :placeholder="control.placeholder" />
 
                                     <!--多选框-->
-                                     <van-row  :key="control._id" v-else-if="control.type==='checkBoxGroup'">
-                                         <van-cell v-on:click="show(control)" :title="control.title" :value="control.placeholder" is-link />
-                                         <van-actionsheet v-model="control.show" :title="control.title">
-                                            <van-checkbox-group @change="GroupItemSelect(control)" v-model="control.vmodel">
-                                                
-                                                <van-cell-group>
-                                                    <van-cell v-for="checkbox in control.controlList" :title="checkbox.keyName" :key="checkbox._id">
-                                                         <van-checkbox :name="checkbox.keyName" />
-                                                    </van-cell>
-                                                </van-cell-group>
-                                         
-                                                    <van-cell>
-                                                        <van-button  @click="closeGroupItem(control)"  type="primary" bottom-action>确认</van-button>  
-                                                    </van-cell>                                             
-                                                </van-checkbox-group>
-                                        </van-actionsheet>                                         
-                                     </van-row>
+                                    <vantPopCheckBoxGroup :key="control._id" v-if="control.type==='checkBoxGroup'" :control="control" ></vantPopCheckBoxGroup>
 
                                      <!--单选框-->
-                                     <van-row  :key="control._id" v-else-if="control.type==='radioBoxGroup'">
-                                        <van-cell v-on:click="show(control)" :title="control.title" :value="control.placeholder" is-link />
-                                            <van-actionsheet v-model="control.show" :title="control.title">
-                                                <van-radio-group v-model="control.vmodel">
-                                                    <van-cell-group>
-                                                        <van-cell v-for="radiobox in control.controlList" :title="radiobox.keyName" clickable :key="radiobox._id">
-                                                             <van-radio :name="radiobox.keyName" />
-                                                        </van-cell>
-                                                    </van-cell-group>
-                                                </van-radio-group>  
-                                                <van-cell>
-                                                    <van-button @click="closeGroupItem(control)" type="primary" bottom-action>确认</van-button>  
-                                                </van-cell>                                             
-                                            </van-actionsheet>
-                                     </van-row>
+                                    <vantPopRadioGroupBox :key="control._id" v-if="control.type==='radioBoxGroup'" :control="control" ></vantPopRadioGroupBox>
+
                                 
                                     <!--日期控件 年月日-时分-秒-->
-                                     <van-row  :key="control._id" v-else-if="control.type==='dateAndTime'">
-                                        <van-cell @click="show(control)"  :title="control.title" :value="control.placeholder" is-link />
-                                        <van-actionsheet v-model="control.show" :title="control.title">
-                                            <van-datetime-picker
-                                                v-model="control.vmodel"
-                                                type="datetime"
-                                            />
-                                        </van-actionsheet>                                        
-                                     </van-row>
+                                    <vantPopDateTimePicket :key="control._id"  v-else-if="control.type==='dateAndTime'" :control="control"></vantPopDateTimePicket>
 
                                      <!--日期控件 年-月-日-->
-                                       <van-row  :key="control._id" v-else-if="control.type==='date'">
-                                        <van-cell  @click="show(control,po)" :title="control.title" :value="control.placeholder" is-link />
-                                        <van-actionsheet v-model="control.show" :title="control.title">
-                                            <van-datetime-picker
-                                                v-model="control.vmodel"
-                                                type="date"
-                                            />                                       
-                                        </van-actionsheet>  
-                                     </van-row>                                   
+                                    <vantPopDateTimePicket :key="control._id"  v-else-if="control.type==='date'" :control="control"></vantPopDateTimePicket>                                 
                                 
                                      <!--多文本框-->
                                     <van-field
@@ -121,12 +76,19 @@
 
 <script>
 
-
+/*vant自定义组件 */
+import vantPopRadioGroupBox from './control/vantPopRadioGroupBox.vue';
+import vantPopCheckBoxGroup from './control/vantPopCheckBoxGroup.vue';
+import vantPopDateTimePicket from './control/vantPopDateTimePicket.vue';
 
 
 export default {
         name: "vantUIForm",
-
+        components:{
+            vantPopRadioGroupBox,
+            vantPopCheckBoxGroup,
+            vantPopDateTimePicket
+        },
         data() {
             return {
             show2: false,
@@ -137,10 +99,8 @@ export default {
             }
             };
         },
-
         props: {
-            form: Object,
-            title: String
+            form: Object
         },
         mounted: function() {
             console.log("===========mounted beigin=============");
@@ -151,26 +111,7 @@ export default {
             console.log("data", this);
         },
         methods: {     
-            show:function(control,fn) {
-                control.show = true;
-                if(fn!==undefined){
-                    console.log("this is mehotd");
-                    fn.call(this);
-                }
-            },
-            hide:function(control){
 
-            },
-            setVal:function(){
-
-            },
-
-            GroupItemSelect: function(control) {
-                console.log("你的复中的是：", control.vmodel.join(","));
-            },
-            closeGroupItem:function(control){
-                control.show=false;
-            }
         }
 };
 </script>
