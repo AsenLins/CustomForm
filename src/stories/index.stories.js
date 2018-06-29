@@ -6,12 +6,17 @@ import { templateFactory } from "../components/form/model/template/templateFacto
 
 import vantUIForm from '../components/form/vant/form.vue';
 import formPanel from '../components/form/builder/formPanel';
+import formStoreTest from '../components/form/vant/formStoreTest.vue'
+import Vuex from 'vuex';
 
 /*vant自定义组件 */
 import vantPopRadioGroupBox from '../components/form/vant/control/vantPopRadioGroupBox.vue';
 import vantPopCheckBoxGroup from '../components/form/vant/control/vantPopCheckBoxGroup.vue';
 import vantPopDateTimePicket from '../components/form/vant/control/vantPopDateTimePicket.vue';
 
+
+/*自定义store */
+import formStore from '../store/modules/form/formDesign';
 
 
 
@@ -99,9 +104,6 @@ storiesOf("表单设计器", module).add("表单容器Vant", () => ({
         testFather: function(control) {
             console.log(control);
             control.show = true;
-
-            //this.title = "441";
-
         }
     }
 })).add("表单设计容器", () => ({
@@ -114,5 +116,30 @@ storiesOf("表单设计器", module).add("表单容器Vant", () => ({
 
     },
     template: '<formPanel :form="form"></formPanel>',
+
+}))
+
+
+
+var formStores = formStore;
+
+var store = new Vuex.Store({
+    modules: {
+        formStores
+    }
+})
+
+
+
+
+storiesOf("测试store", module).add("测试store", () => ({
+    components: { formStoreTest },
+    store,
+    data() {
+        return {
+            form: formStoreTest,
+        }
+    },
+    template: '<formStoreTest></formStoreTest>',
 
 }))

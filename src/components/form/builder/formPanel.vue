@@ -7,7 +7,7 @@
               
                              <template v-for="control in item.controlList">
                                    
-                                    <edit-panel :control="control" :key="control._id">
+                                    <edit-control   :control="control" :key="control._id">
                                         <!--文本控件-->
                                         <van-field  v-if="control.type==='text'"  :label="control.title"   v-model="control.vmodel"  :placeholder="control.placeholder" />
 
@@ -58,7 +58,7 @@
                                                 
                                         </van-cell-group>                                     
 
-                                    </edit-panel>
+                                    </edit-control>
 
                                     
 
@@ -79,8 +79,8 @@
     /*拖拽组件*/  
     import draggable from 'vuedraggable'
     /*面板设计组件 */
-    import editPanel from './control/editPanel.vue';
-    console.log(editPanel);
+    import editControl from './control/editControl.vue';
+
     export default {
         name:"formPanel",
         components:{
@@ -88,10 +88,9 @@
             vantPopCheckBoxGroup,
             vantPopDateTimePicket,
             draggable,
-            editPanel
+            editControl
         },
-        data(){
-        },
+
         props:{
             form:Object
         }

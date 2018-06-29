@@ -7,9 +7,10 @@
 
 <script>
     export default {
-        name:"editPanel",
+        name:"editControl",
         props:{
-            control:Object
+            control:Object,
+            item:Object
         },
         methods:{
             showEdit:function(control){
