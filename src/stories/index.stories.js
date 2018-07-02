@@ -132,14 +132,17 @@ var store = new Vuex.Store({
 
 
 
+var formStateObj = templateFactory["testForm"]();
+formStateObj.title = "表单设计器";
+
 storiesOf("测试store", module).add("测试store", () => ({
     components: { formStoreTest },
     store,
     data() {
         return {
-            form: formStoreTest,
+            form: formStateObj,
         }
     },
-    template: '<formStoreTest></formStoreTest>',
+    template: '<formStoreTest :form="form"></formStoreTest>',
 
 }))

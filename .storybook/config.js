@@ -19,5 +19,5 @@ function loadStories() {
 Vue.use(Vuex);
 Vue.use(Vant);
 Vue.use(MuseUI);
-
+Vue.config.silent = true;
 configure(loadStories, module);
