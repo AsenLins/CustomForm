@@ -4,9 +4,9 @@
 import { Form } from "../container/form";
 import { FormItem } from "../container/formItem";
 import { Controls } from "../controls/index";
-import { VerifyRule } from '../verify/rule/index';
-
-
+//import { VerifyRule } from '../verify/rule/index';
+import { Verify } from '../verify/verify';
+import { VerifyRule } from '../verify/verifyRule';
 
 class OverTimeForm {
     constructor(option) {
@@ -22,7 +22,22 @@ class OverTimeForm {
                 .add(new Controls.DateAndTimeInput({
                         title: "开始时间",
                         notEmpty: true,
-                    }).setVerify({
+                    })
+                    .setVerify(new Verify({
+                        isNotEmpty: false,
+                        rules: [
+                            new VerifyRule({
+                                tip: "开始时间不能为空",
+                                rule: "notEmpty"
+                            }),
+                            new VerifyRule({
+                                tip: "结束时间不能为空",
+                                rule: "notEmpty"
+                            })
+                        ]
+                    }))
+                    /*
+                    .setVerify({
                         rules: [{
                                 tip: "开始时间不能为空",
                                 rule: VerifyRule.base.notEmpty()
@@ -35,31 +50,17 @@ class OverTimeForm {
                     }).setAttrs({
                         print: true
                     })
+                    */
 
 
                 )
                 .add(new Controls.DateAndTimeInput({
-                        title: "结束时间",
-                        notEmpty: true
-                    }).setVerify({
-                        rules: [{
-                                tip: "结束时间不能为空",
-                                rule: VerifyRule.base.notEmpty(),
-                            },
-                            {
-                                tip: "结束时间必须大于开始时间",
-                                rule: VerifyRule.date.compareBig("startTime")
-                            }
-                        ]
-                    })
-
-                )
+                    title: "结束时间",
+                    notEmpty: true
+                }))
                 .add(new Controls.TextInput({
                     title: "加班时长",
                     notEmpty: true,
-                }).setVerify({
-                    tip: "加班时长不能空",
-                    rule: VerifyRule.base.notEmpty()
                 }))
 
             )

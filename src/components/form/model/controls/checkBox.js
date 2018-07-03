@@ -6,8 +6,9 @@ class CheckBox extends ControlBase {
         super(option);
         this.keyName = option.keyName;
         this.isCheck = false;
+
         this.type = controlType.radio;
     }
 }
 
-export { CheckBox };
+export { CheckBox }

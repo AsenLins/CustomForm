@@ -11,27 +11,27 @@ class ControlBase extends Base {
         if (option.title !== undefined) {
             this.placeholder = "请输入" + this.title;
         }
-
-        this.coreData = {
-            verify: [],
-            attrs: {},
-            data: {},
-        }
-
-
+        this.verify = {
+                isNotEmpty: false,
+                rules: []
+            },
+            this.attrs = {},
+            this.data = {}
     }
+
     setVerify(verify) {
-        this.coreData.verify.push(verify);
+        this.verify = verify;
         return this;
     }
     setAttrs(attrs) {
-        this.coreData.attrs = attrs;
+        this.attrs = attrs;
         return this;
     }
     setData(data) {
-        this.coreData.data = data;
+        this.data = data;
         return this;
     }
+
 
 
 

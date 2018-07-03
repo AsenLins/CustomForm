@@ -1,4 +1,5 @@
 const formMap = {
+
     getters: {
         getCurrentEditControl: "formStores/getCurrentEditControl",
         getCurrentEditAttr: "formStores/getCurrentEditAttr",
@@ -11,7 +12,8 @@ const formMap = {
         addControl: "formStores/addControl",
         removeControl: "formStores/removeControl",
         setControlAttr: "formStores/setControlAttr",
-        setControlVerify: "formStores/setControlVerify"
+        setControlVerify: "formStores/setControlVerify",
+        modifyEditControl: "formStores/modifyEditControl"
     }
 }
 

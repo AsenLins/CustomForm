@@ -10,7 +10,7 @@ import { VerifyRule } from '../verify/rule/index';
 class TestForm {
     constructor() {
         var testForm = new Form({
-                name: "overTimeForm",
+                name: "testForm",
                 method: "POST",
                 enctype: "multipart/form-data",
                 title: "测试表单"
