@@ -40,7 +40,7 @@
             <!--<el-header></el-header>-->
 
             <!--内容容器-->
-            <router-view name="formDesign"></router-view>
+
             <el-main class="f-content">
                 <tab-view :tabs="menu"></tab-view>
             </el-main>
@@ -62,9 +62,25 @@
             return {menu: menu}
 
         },
-        mounted(){
+        mounted() {
             console.log(this.$router);
-            this.$router.push('/formDesign');
+            this
+                .$router
+                .push('/formDesign');
+                var vue=this;
+            setTimeout(function () {
+                vue
+                    .menu
+                    .push({
+                        id: "443",
+                        name: "数据记录",
+                        icon: "grade",
+                        path: "",
+                        routerName: "formList",
+                        child: []
+                    })
+
+            }, 4000);
         },
         methods: {}
 
@@ -105,7 +121,7 @@
     .f-menu {
         border-right: 0;
     }
-    
+
     /*内容页*/
     .f-content {
         padding-top: 10px;

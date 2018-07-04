@@ -16,9 +16,11 @@ const routers = [{
         name: "Main",
         component: Main,
         children: [{
-            name: "formDesign",
             path: "formDesign",
-            component: formDesign
+            components:{
+                formDesign,
+                formList
+            }
         }]
     },
 
