@@ -19,9 +19,6 @@ class VacationForm {
                 })
                 .add(new Controls.RadioBoxGroup({
                     title: "请假类型",
-                }).setVerify({
-                    tip: "请假类型不能为空",
-                    rule: VerifyRule.base.notEmpty()
                 }))
 
             )

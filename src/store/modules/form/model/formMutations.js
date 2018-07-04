@@ -94,13 +94,20 @@ const formMutations = {
      * @param {验证对象} option 
      */
     setControlVerify(state, rulesObj) {
-        console.debug("before 【setControlVerify】");
+        console.debug("before 【setControlVerify】", rulesObj);
 
 
-        formMethod.addVueObj(state.designForm.currentEditControl, "verify", []);
+        formMethod.addVueObj(state.designForm.currentEditControl, "verify", {
+            isNotEmpty: false,
+            rules: []
+        });
 
-        var rules = rulesObj.verify.rules,
+        var rules = rulesObj.rules,
             curVerify = state.designForm.currentEditControl.verify;
+
+        if (curVerify.rules === undefined) {
+            Vue.set(curVerify, "rules", []);
+        }
 
         for (var index = 0, rlength = rules.length; index < rlength; index++) {
             curVerify.rules.push(rules[index]);

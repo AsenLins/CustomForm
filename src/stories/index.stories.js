@@ -14,6 +14,10 @@ import vantPopRadioGroupBox from '../components/form/vant/control/vantPopRadioGr
 import vantPopCheckBoxGroup from '../components/form/vant/control/vantPopCheckBoxGroup.vue';
 import vantPopDateTimePicket from '../components/form/vant/control/vantPopDateTimePicket.vue';
 
+/*ElementUI */
+
+import tabView from '../components/tabView.vue';
+
 
 /*自定义store */
 import formStore from '../store/modules/form/formDesign';
@@ -144,5 +148,32 @@ storiesOf("测试store", module).add("测试store", () => ({
         }
     },
     template: '<formStoreTest :form="form"></formStoreTest>',
+
+}))
+
+
+console.log("tabView", tabView);
+storiesOf("自定义Element组件", module).add("tabView", () => ({
+    components: { tabView },
+    data() {
+        return {
+            tabs: [{
+                    name: "总览",
+                    routerName: "test",
+                    icon: "",
+                    id: "1",
+                },
+                {
+                    name: "表单设计",
+                    routerName: "test",
+                    icon: "",
+                    id: "2",
+                }
+
+
+            ],
+        }
+    },
+    template: '<tabView :tabs="tabs"></tabView>',
 
 }))

@@ -4,7 +4,6 @@
 
 const path = require('path')
 var HtmlWebpackPlugin = require('html-webpack-plugin');
-const vuxLoader = require('vux-loader')
 
 const wpConfig = {
     dev: {
@@ -46,6 +45,14 @@ const wpConfig = {
             filename: "./build/Index.html"
         })
     ],
+    module: {
+        rules: [{
+                test: /\.sass$/,
+                loaders: ['style', 'css', 'sass']
+            }
+
+        ]
+    },
     build: {
         // Template for index.html
         index: path.resolve(__dirname, '../dist/index.html'),
@@ -80,10 +87,5 @@ const wpConfig = {
 
 
 
-/*
-module.exports = wpConfig
-*/
 
-module.exports = vuxLoader.merge(wpConfig, {
-    plugins: ['vux-ui']
-})
+module.exports = wpConfig

@@ -1,7 +1,4 @@
-class Attr {
-    constructor(attrs) {
-        this.isPrint = attrs.isPrint;
-    }
-}
+import { Attr } from './attr';
 
-export { Attr };
+
+export { Attr }

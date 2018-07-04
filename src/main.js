@@ -7,10 +7,20 @@ import MuseUI from 'muse-ui';
 import Vuex from 'vuex';
 import 'muse-ui/dist/muse-ui.css';
 
+import ElementUI from 'element-ui';
+import 'element-ui/lib/theme-chalk/index.css';
+import './css/element-variables.scss';
+
+
+
+
 
 import Vant from 'vant';
 import 'vant/lib/vant-css/index.css';
 
+
+
+Vue.use(ElementUI);
 Vue.use(Vuex);
 Vue.use(Vant);
 Vue.use(MuseUI);

@@ -22,16 +22,20 @@
               </mu-paper>
             </div>
         </mu-paper>
-        <mu-appbar class="c-appbar-wrap" color="red">
-            {{name}}
-            <mu-button flat slot="right">选项</mu-button>
-        </mu-appbar>
+        <mu-paper class="c-appbar-wrap" z-depth="2" >
+          <mu-tabs  class="c-menuTap-wrap"  color="secondary" text-color="rgba(0, 0, 0, .54)"  left>
+                <mu-tab>首页</mu-tab>
+                <mu-tab>表单设计</mu-tab>
+                <mu-tab>数据记录</mu-tab>
+          </mu-tabs>
+
+        </mu-paper>
+
 
         <mu-flex class="flex-wrapper c-content-wrap" justify-content="start">
           <mu-container class="c-content">
             <mu-paper :z-depth="1" style="height:100%;">
-              <mu-tabs  inverse color="secondary" text-color="rgba(0, 0, 0, .54)"  center>
-                <mu-tab>申请记录</mu-tab>
+              <mu-tabs  inverse  color="secondary" text-color="rgba(0, 0, 0, .54)"  center>
                 <mu-tab>模板设置</mu-tab>
                 <mu-tab>规则设置</mu-tab>
               </mu-tabs>
@@ -72,6 +76,9 @@ html,body{
     margin: 0px;
     height:100%;
 }
+.c-logo-wrap{
+  padding-left: 0px;
+}
 .c-menu-wrap{
     position: fixed;
     top: 0px;
@@ -87,6 +94,11 @@ html,body{
     left: 256px;
     overflow: hidden;
     right: 0px;
+    height: 64px;
+    z-index: 2;
+}
+.c-menuTap-wrap{
+  height: 64px;
 }
 .c-logo{
     margin-top: 23px;
