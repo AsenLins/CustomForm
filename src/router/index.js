@@ -4,27 +4,19 @@ import Router from 'vue-router'
 /*首页*/
 import Main from '../views/Main/index';
 
-/*form表单页面*/
-import formDesign from '../views/form/formDesign';
-import formList from '../views/form/formList';
+/*二级路由（嵌套路由） */
+import InsideRouter from './InsideRouter';
+
 
 Vue.use(Router)
 
 
 const routers = [{
-        path: '/',
-        name: "Main",
-        component: Main,
-        children: [{
-            path: "formDesign",
-            components:{
-                formDesign,
-                formList
-            }
-        }]
-    },
-
-]
+    path: '/',
+    name: "Main",
+    component: Main,
+    children: InsideRouter
+}]
 
 
 

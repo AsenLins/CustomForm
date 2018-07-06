@@ -20,7 +20,7 @@ import tabView from '../components/tabView.vue';
 
 
 /*自定义store */
-import formStore from '../store/modules/form/formDesign';
+import form from '../store/modules/form/formDesign';
 
 
 
@@ -125,11 +125,11 @@ storiesOf("表单设计器", module).add("表单容器Vant", () => ({
 
 
 
-var formStores = formStore;
+
 
 var store = new Vuex.Store({
     modules: {
-        formStores
+        form
     }
 })
 

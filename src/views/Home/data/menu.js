@@ -1,11 +1,17 @@
 const menu = [{
-        name: "表单设计",
+        name: "总览",
         icon: "inbox",
         path: "",
         child: []
     },
     {
-        name: "数据记录",
+        name: "表单设计",
+        icon: "grade",
+        path: "",
+        child: []
+    },
+    {
+        name: "数据",
         icon: "grade",
         path: "",
         child: []

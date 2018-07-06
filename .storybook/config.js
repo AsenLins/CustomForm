@@ -3,8 +3,6 @@ import { configure } from '@storybook/vue';
 
 import Vue from 'vue';
 import Vuex from 'vuex'
-import MuseUI from 'muse-ui';
-import 'muse-ui/dist/muse-ui.css';
 import Vant from 'vant';
 import 'vant/lib/vant-css/index.css';
 
@@ -24,6 +22,5 @@ function loadStories() {
 Vue.use(Vuex);
 Vue.use(Vant);
 Vue.use(ElementUI);
-Vue.use(MuseUI);
 Vue.config.silent = true;
 configure(loadStories, module);

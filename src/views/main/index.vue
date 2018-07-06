@@ -52,7 +52,9 @@
 
 <script>
     import tabView from '../../components/tabView.vue';
+    
     import menu from './data/menu';
+    import r from '../../router/InsideRouter';
 
     export default {
         components: {
@@ -63,7 +65,12 @@
 
         },
         mounted() {
+            console.log("store is ",this.$store);
+            console.log("router",this.$router);
             console.log(this.$router);
+            console.log("r is ", r);
+
+            /*
             this
                 .$router
                 .push('/formDesign');
@@ -81,6 +88,7 @@
                     })
 
             }, 4000);
+            */
         },
         methods: {}
 

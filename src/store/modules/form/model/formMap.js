@@ -1,19 +1,19 @@
 const formMap = {
 
     getters: {
-        getCurrentEditControl: "formStores/getCurrentEditControl",
-        getCurrentEditAttr: "formStores/getCurrentEditAttr",
-        getCurrentEditVerify: "formStores/getCurrentEditVerify",
-        getCurrentForm: "formStores/getCurrentForm"
+        getCurrentEditControl: "form/getCurrentEditControl",
+        getCurrentEditAttr: "form/getCurrentEditAttr",
+        getCurrentEditVerify: "form/getCurrentEditVerify",
+        getCurrentForm: "form/getCurrentForm"
     },
     actions: {
-        changeForm: "formStores/changeForm",
-        changeEditControl: "formStores/changeEditControl",
-        addControl: "formStores/addControl",
-        removeControl: "formStores/removeControl",
-        setControlAttr: "formStores/setControlAttr",
-        setControlVerify: "formStores/setControlVerify",
-        modifyEditControl: "formStores/modifyEditControl"
+        changeForm: "form/changeForm",
+        changeEditControl: "form/changeEditControl",
+        addControl: "form/addControl",
+        removeControl: "form/removeControl",
+        setControlAttr: "form/setControlAttr",
+        setControlVerify: "form/setControlVerify",
+        modifyEditControl: "form/modifyEditControl"
     }
 }
 
