@@ -1,21 +1,39 @@
-var uuid = require("uuid/v1");
 
-const menu = [{
-        id: uuid(),
-        name: "表单设计",
-        icon: "inbox",
-        path: "",
-        routerName: "formDesign",
-        child: []
+import uuid from 'uuid/v1';
+
+
+const menuList=[
+    {
+        id:uuid(),
+        title:"总览",
+        icon:"",
+        path:"'"
     },
     {
-        id: uuid(),
-        name: "数据记录",
-        icon: "grade",
-        path: "",
-        routerName: "formList",
-        child: []
+        id:uuid(),
+        title:"表单",
+        icon:"",
+        children:[
+            {
+                id:uuid(),
+                title:"表单设计",
+                path:"formDesign"
+            },
+            {
+                id:uuid(),
+                title:"表单列表",
+                path:"formList"
+            }
+        ]
+    },
+    {
+        id:uuid(),
+        icon:"",
+        title:"数据",
+        path:""
     }
 ]
 
-module.exports = menu;
+
+
+export default menuList;
