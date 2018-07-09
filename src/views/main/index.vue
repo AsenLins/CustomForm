@@ -12,7 +12,7 @@
 
                     <!--菜单-->
 
-                    <menus :menuList="menuList"></menus>
+                    <menus></menus>
 
                 </el-col>
             </el-row>
@@ -25,7 +25,8 @@
             <!--内容容器-->
 
             <el-main class="f-content">
-                <!--<tab-view :tabs="menuList"></tab-view>-->
+                <tab-view></tab-view>
+              
             </el-main>
 
         </el-container>
@@ -34,27 +35,26 @@
 </template>
 
 <script>
-    import menus from '../../components/menu.vue';
+    import menus from '../../components/menus.vue';
     import tabView from '../../components/tabView.vue';
 
-    import menuList from './data/menu';
    
-   console.log(menuList);
-
     export default {
         components: {
             tabView,
             menus
         },
         data() {
-            return {menuList}
+            return {
+
+            }
 
         },
         mounted() {
             console.log("store is ", this.$store);
             console.log("router", this.$router);
             console.log(this.$router);
-            console.log("menu is", menu);
+            console.log("menu is", menus);
 
             /*
             this
