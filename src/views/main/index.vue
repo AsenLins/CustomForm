@@ -12,24 +12,7 @@
 
                     <!--菜单-->
 
-                    <el-menu default-active="1" class="f-menu">
-
-                        <el-menu-item index="1">
-                            <i class="el-icon-document"></i>
-                            <span slot="title">总览</span>
-                        </el-menu-item>
-
-                        <el-menu-item index="2">
-                            <i class="el-icon-menu"></i>
-                            <span slot="title">表单设计</span>
-                        </el-menu-item>
-
-                        <el-menu-item index="3">
-                            <i class="el-icon-document"></i>
-                            <span slot="title">数据</span>
-                        </el-menu-item>
-
-                    </el-menu>
+                    <menus :menuList="menuList"></menus>
 
                 </el-col>
             </el-row>
@@ -42,7 +25,7 @@
             <!--内容容器-->
 
             <el-main class="f-content">
-                <tab-view :tabs="menu"></tab-view>
+                <!--<tab-view :tabs="menuList"></tab-view>-->
             </el-main>
 
         </el-container>
@@ -51,24 +34,27 @@
 </template>
 
 <script>
+    import menus from '../../components/menu.vue';
     import tabView from '../../components/tabView.vue';
-    
-    import menu from './data/menu';
-    import r from '../../router/InsideRouter';
+
+    import menuList from './data/menu';
+   
+   console.log(menuList);
 
     export default {
         components: {
-            tabView
+            tabView,
+            menus
         },
         data() {
-            return {menu: menu}
+            return {menuList}
 
         },
         mounted() {
-            console.log("store is ",this.$store);
-            console.log("router",this.$router);
+            console.log("store is ", this.$store);
+            console.log("router", this.$router);
             console.log(this.$router);
-            console.log("r is ", r);
+            console.log("menu is", menu);
 
             /*
             this
