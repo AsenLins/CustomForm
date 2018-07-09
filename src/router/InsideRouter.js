@@ -23,8 +23,6 @@ const menu = [{
 
         }
     }
-
-
 ]
 
 const InsideRouter = [{
