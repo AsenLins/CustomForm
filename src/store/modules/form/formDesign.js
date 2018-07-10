@@ -12,7 +12,9 @@ import { DesignForm } from './model/formModel';
 
 const state = {
     designForm: new DesignForm({
-        form: {},
+        form: {
+            title: "noForm"
+        },
         currentEditControl: {}
     })
 }

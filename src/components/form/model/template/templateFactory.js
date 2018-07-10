@@ -22,4 +22,4 @@ const templateFactory = {
     }
 }
 
-export { templateFactory }
+export default templateFactory

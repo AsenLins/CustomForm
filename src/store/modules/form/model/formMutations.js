@@ -12,12 +12,8 @@ const formMutations = {
         //console.log("constructor", form.prototype);
         console.debug("before:【changeForm】", state.designForm.form);
 
-        var designForm = new DesignForm({
-            form: form,
-            currentEditControl: {}
-        });
-
-        formMethod.resetVueObj(state, "designForm", designForm)
+        formMethod.resetVueObj(state.designForm, "form", form);
+        formMethod.resetVueObj(state.designForm, "currentEditControl", {})
 
         console.debug("after:【changeForm】", state.designForm.form);
     },

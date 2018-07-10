@@ -18,7 +18,7 @@ import router from './router'
 /*store */
 import store from './store/index';
 
-
+console.log(store);
 
 
 /*引入插件 */
