@@ -17,4 +17,4 @@ const formMap = {
     }
 }
 
-export { formMap };
+export default formMap;

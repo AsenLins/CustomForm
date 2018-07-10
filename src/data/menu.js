@@ -14,7 +14,7 @@ const menuList = [{
         children: [{
                 id: uuid(),
                 title: "表单设计",
-                path: "formDesign"
+                path: "formDesignMain"
             },
             {
                 id: uuid(),

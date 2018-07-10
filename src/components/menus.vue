@@ -1,5 +1,5 @@
 <template>
-    <el-menu default-active="0" class="f-menu">
+    <el-menu :default-active="activity" class="f-menu">
 
         <template v-for="(menu, menuIndex) in menuList">
             <el-menu-item
@@ -37,7 +37,14 @@
     export default {
         name: "menus",
         data() {
-            return {menuList}
+            return {
+                menuList,
+                activity:"0"
+            }
+        },
+        mounted(){
+            this.setTab(this.menuList[1].children[0]);
+            this.activity="2-1";
         },
         methods: {
             ...mapActions(tabsViewMap.actions),
@@ -47,10 +54,8 @@
             */
             setTab(menu) {
                 this.addAndSelectTabView({tab:menu})
-                .then(()=>{
-                  
+                .then(()=>{              
                     this.$router.push({path:menu.path});
-                    console.log("success"); 
                 });
             },
             /**

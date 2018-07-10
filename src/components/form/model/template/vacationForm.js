@@ -12,6 +12,7 @@ class VacationForm {
         var vacationForm = new Form({
                 name: "vacationForm",
                 method: "POST",
+                title: "请假申请",
                 enctype: "multipart/form-data"
             })
             .add(new FormItem({

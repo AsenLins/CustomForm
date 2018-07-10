@@ -1,7 +1,8 @@
 const tabsViewMap = {
     getters: {
         getCurrentTab: "tabsView/getCurrentTab",
-        getCurrentTabList: "tabsView/getCurrentTabList"
+        getCurrentTabList: "tabsView/getCurrentTabList",
+        getPrevTab: "tabsView/getPrevTab"
     },
     actions: {
         setTabViews: "tabsView/setTabViews",

@@ -1,11 +1,11 @@
-var guid = require("guid");
+import uuid from 'uuid/v1';
 
 class Base {
     constructor(option) {
         if (option._id != undefined) {
             this._id = option._id;
         } else {
-            this._id = guid.raw();
+            this._id = uuid();
         }
         this.name = option.name;
         if (option.title !== undefined) {

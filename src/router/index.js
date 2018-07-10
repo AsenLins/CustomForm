@@ -3,21 +3,21 @@ import Router from 'vue-router'
 
 /*首页*/
 import Main from '../views/Main/index';
-import formDesign from '../views/form/formDesign';
+import formDesign from '../views/form/formDesign/formDesign';
 import formList from '../views/form/formList';
-
+import formDesignMain from '../views/form/formDesign/formDesignMain';
 Vue.use(Router)
 
 const routers = [{
 
     path: '/',
     name: "Main",
-
     component: Main,
     children: [{
-            name: "formDesign",
-            path: "formDesign",
-            components: { formDesign }
+            name: "formDesignMain",
+            path: "formDesignMain",
+            components: { formDesignMain }
+            //components: { formDesign }
         }, {
             name: "formList",
             path: "formList",

@@ -11,13 +11,13 @@
                     <span slot="label">                   
                         <i :class="tab.icon"></i>{{tab.label}}
                     </span>
-                 <keep-alive>
+                <keep-alive>
                     <router-view :name="tab.routerName" ></router-view>
                 </keep-alive>                     
                 </el-tab-pane>
                 
             </el-tabs>
-            
+
 </template>
 
 <script>
@@ -31,7 +31,6 @@
     import { mapActions, mapGetters } from 'vuex'; 
     import tabsView from '../store/modules/tabsViews/tabsView';
     import tabsViewMap from '../store/modules/tabsViews/tabsViewMap';
-    import menuList from '../data/menu';
     export default {
         name:"tabView",
         data(){
@@ -42,47 +41,25 @@
             }
         },
         methods:{
-
             ...mapActions(tabsViewMap.actions),
             ...mapGetters(tabsViewMap.getters),
-            tabSelect(selectTab){
-                var name=selectTab.name;
-                console.log(selectTab);
-            },
-            tabSelect(){
+            tabSelect(tab){
                 var curTab=this.tab;
-                for(var i=0;i<menuList.length;i++){
-                    var curMenu=menuList[i];
-                    if(curMenu.id==curTab.name){
-                        console.log("父符合");
-                        this.$router.push(curMenu.path);
-                        break;
-                    }
-                    if(curMenu.children!==undefined){
-                        for(var c=0;c<curMenu.children.length;c++){
-                            var childMenu=curMenu.children[c];
-                            if(childMenu.id==curTab.name){
-                                console.log("符合");
-                                this.$router.push(childMenu.path);
-                                break;
-                            }
-                        }
-
+                for(var index=0,listLength=this.list.length;index<listLength;index++){
+                    if(this.list[index].name==tab.name){
+                         this.$router.push(this.list[index].routerName);
                     }
                 }
-                console.log(curTab);
             },
-            remove(id){
-                for(var index=0,tabLength=this.tabs.length;index<tabLength;index++){
-                    if(this.tabs[index].id==id){
-                        this.tabs.splice(index,1);
-                        if(index-1>=0){
-                            this.tabIndex=this.tabs[index-1].id;
-                        }
-                        break;
+            remove(removeTabName){
+                this.removeTabView(removeTabName)
+                .then(()=>{
+                    var prevTab=this.getPrevTab();
+                    if(prevTab!=null){
+                        this.changeTabSelect(prevTab.name);
+                        this.$router.push(prevTab.routerName);
                     }
-                }
-                console.debug("tab is remove");
+                });
             }
         }
     }

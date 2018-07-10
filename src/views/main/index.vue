@@ -56,25 +56,7 @@
             console.log(this.$router);
             console.log("menu is", menus);
 
-            /*
-            this
-                .$router
-                .push('/formDesign');
-                var vue=this;
-            setTimeout(function () {
-                vue
-                    .menu
-                    .push({
-                        id: "443",
-                        name: "数据记录",
-                        icon: "grade",
-                        path: "",
-                        routerName: "formList",
-                        child: []
-                    })
-
-            }, 4000);
-            */
+         
         },
         methods: {}
 

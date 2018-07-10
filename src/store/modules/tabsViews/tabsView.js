@@ -7,7 +7,9 @@ const state = {
         currentTab: {
             name: "",
             label: ""
-        }
+        },
+        prevTab: {}
+
     }
 }
 
@@ -29,6 +31,9 @@ const getters = {
      */
     getCurrentTabList(state, getters, rootState) {
         return state.tabs.list;
+    },
+    getPrevTab(state) {
+        return state.tabs.prevTab;
     }
 }
 
@@ -49,7 +54,7 @@ const actions = {
         }
 
         if (hasTab) {
-            context.commit("changeTabSelect", param);
+            context.commit("changeTabSelect", tab.id);
         } else {
             context.commit("addTabView", param);
         }
@@ -99,15 +104,23 @@ const mutations = {
      * @param {*} state
      * @param {*} param
      */
-    removeTabView(state, param) {
-        for (var index = 0, listLength = state.tabs.list.length; index < listLength; index++) {
-            if (state.tabs.list[index].id == param.tabView.id) {
-                Vue.delete(state, "list", index);
-                if (index - 1 > 0) {
-                    Vue.set(state, "currentMenu", state.tabs.list[index - 1]);
-                }
+    removeTabView(state, removeTabName) {
+        var tabs = state.tabs.list,
+            removeTabName = removeTabName,
+            prevIndex = -1;
 
+        for (var index = 0, tabsLength = tabs.length; index < tabsLength; index++) {
+            var curTap = tabs[index];
+            if (curTap.name == removeTabName) {
+                Vue.delete(tabs, index);
+                prevIndex = index - 1;
+                console.log("prevIndex", prevIndex);
+                break;
             }
+        }
+        if (prevIndex >= 0) {
+            console.log("tabs prev", tabs);
+            Vue.set(state.tabs, "prevTab", tabs[prevIndex]);
         }
     },
     /**
@@ -116,9 +129,9 @@ const mutations = {
      * @param {*} state
      * @param {*} param
      */
-    changeTabSelect(state, param) {
+    changeTabSelect(state, name) {
 
-        Vue.set(state.tabs.currentTab, "name", param.tab.id);
+        Vue.set(state.tabs.currentTab, "name", name);
 
     }
 }
