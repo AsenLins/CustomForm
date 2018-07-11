@@ -13,7 +13,8 @@ import { DesignForm } from './model/formModel';
 const state = {
     designForm: new DesignForm({
         form: {
-            title: "noForm"
+            title: "表单名称",
+            controlList: []
         },
         currentEditControl: {}
     })

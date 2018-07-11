@@ -4,7 +4,7 @@
       <el-row type="flex" >
         <el-col class="f-design-panel" :span="12">
             <form-panel></form-panel>
-            <form-control-panel></form-control-panel>
+           
         </el-col>
         <el-col :span="12">
             <form-attr-panel></form-attr-panel>
@@ -16,14 +16,15 @@
 
 <script>
     /**组件 */
-    import formPanel from '../../../components/form/formPanel';
-    import formAttrPanel from '../../../components/form/formAttrPanel';
-    import formControlPanel from '../../../components/form/formControlPanel';
-
-
+    import formPanel from '../../../components/form/formPanel/formPanel';
+    import formAttrPanel from '../../../components/form/formAttrPanel/formAttrPanel';
 
     export default {
         name:"formDesign",
+        components:{
+            formPanel,
+            formAttrPanel
+        },
         data(){
           return{
                
@@ -34,12 +35,8 @@
         },
         mounted(){
          
-        },
-        components:{
-            formPanel,
-            formAttrPanel,
-            formControlPanel
         }
+
     }
 </script>
 

@@ -38,6 +38,7 @@ const formMutations = {
      * @param {要添加的新对象} option 
      */
     addControl(state, control) {
+        console.log("addddddd");
         console.debug("before:【addControl】");
 
         state.designForm.form.controlList.push(control);
