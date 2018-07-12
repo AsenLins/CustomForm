@@ -13,7 +13,9 @@ const formMutations = {
         console.debug("before:【changeForm】", state.designForm.form);
 
         formMethod.resetVueObj(state.designForm, "form", form);
-        formMethod.resetVueObj(state.designForm, "currentEditControl", {})
+        formMethod.resetVueObj(state.designForm, "currentEditControl", {
+            _id: ""
+        })
 
         console.debug("after:【changeForm】", state.designForm.form);
     },
@@ -49,9 +51,10 @@ const formMutations = {
      * 删除控件
      * @param {当前store对象} state 
      */
-    removeControl(state, item, control) {
+    removeControl(state, option) {
         console.debug("mutations 【removeControl】");
-
+        var item = option.item;
+        var control = option.control;
         var controlList = item.controlList,
             removeIndex = -1;
 
@@ -63,10 +66,10 @@ const formMutations = {
 
         /*若控件集为空，则把控件的容器也删除 */
         if (controlList.length == 0) {
-            removeIndex = formMethod.getControlIndex(item._id, state.form.controlList);
-            Vue.delete(state.form.controlList, removeIndex);
+            removeIndex = formMethod.getControlIndex(item._id, state.designForm.form.controlList);
+            Vue.delete(state.designForm.form.controlList, removeIndex);
         }
-        console.debug("Delete After Obj", state.form);
+        console.debug("Delete After Obj", state.designForm.form);
     },
     /**
      * 设置对象属性

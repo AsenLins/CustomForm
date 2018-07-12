@@ -1,15 +1,20 @@
 <template>
         <div class="c-form-wrap">
    
-         <van-nav-bar class="c-form-title" :title="formDesign.form.title"/>  
-            <draggable class="c-drag-panel" v-model="formDesign.form.controlList" :options="{group:'control'}" @start="drag=true" @end="drag=false"> 
+         <van-nav-bar  class="c-form-title" :title="formDesign.form.title"/>  
+            <draggable class="c-drag-panel"  v-model="formDesign.form.controlList" :options="{group:'control'}" @start="drag=true" @end="drag=false"> 
             <van-cell-group  style="  position: relative; top:0px;" class="c-form-item" v-for="item in formDesign.form.controlList" :key="item._id" >
               
                              <template v-for="control in item.controlList">
 
-                                    <div :style="{border:control.border}" v-on:mouseover="hoverControlPanel(control,$event)"  :control="control" :key="control._id" @click="openEditModel(control,$event)" class="edit-panel">
+                                    <div :style="{border:control.border}"  v-on:mouseout="outControlPanel()"  v-on:mouseover="hoverControlPanel(control,$event,item)"  :control="control" :key="control._id" @click="openEditModel(control,$event)" class="edit-panel">
                                         <!--遮罩层-->
-                                        <div class="edit-mask"></div>
+                                        <div class="edit-mask" ></div>
+                                        <div class="edit-remove" :class="{showEditRemove:control._id===formDesign.currentEditControl._id}" >
+                                            <div class="edit-btn-remove" @click="removeEditControl(control,item,$event)"> <i class="el-icon-close" ></i></div>
+                                        </div>
+
+
                                         <!--文本控件-->
                                         <van-field  v-if="control.type===controlType.text"  :label="control.title"   v-model="control.vmodel"  :placeholder="control.placeholder" />
 
@@ -68,7 +73,7 @@
             </draggable>
      
             <div class="c-addControl-wrap">
-                <form-control-panel @paneldisplay="panelDisplay" :controlPanelDisplay="controlPanelDisplay" ></form-control-panel>                
+                <form-control-panel @childsetedit="childsetedit" @paneldisplay="panelDisplay" :controlPanelDisplay="controlPanelDisplay" ></form-control-panel>                
                 <van-button   @click="openOrCloseControlPanel" class="c-btn-addControl" type="primary" bottom-action>
                     <i class="el-icon-plus"></i> 新增控件
                 </van-button>
@@ -98,10 +103,7 @@
     import form from '../../../store/modules/form/formDesign';
     import formMap from '../../../store/modules/form/model/formMap';
 
-  
-
-    
-
+    import each from '../../../common/each';
 
     export default {
         name:"formPanel",
@@ -116,31 +118,24 @@
             return{
                 formDesign:form.state.designForm,
                 controlPanelDisplay:"none",
-                controlType:controlType,
-                editPanel:[]
-                
+                controlType:controlType               
             }
         },
-        mounted(){
-                
+        computed:{
+
+        },
+        mounted(){               
                var vacationForm=templateFactory["vacationForm"]();
                this.changeForm(vacationForm);
-                /*
-                var overTimeForm=templateFactory["overTimeForm"]();
-                this.changeForm(vacationForm);
-                setTimeout(() => {
-                    console.log("timeChange");
-                    this.changeForm(overTimeForm);
-                }, 3000);
-                */
         },
         methods:{
             ...mapGetters(formMap.getters),
             ...mapActions(formMap.actions),
-            openOrCloseControlPanel(){
-                
+            /*
+             * 显示控件面板
+             */
+            openOrCloseControlPanel(){               
                 this.controlPanelDisplay="block";
-
             },
             /**
              * 子组件方法：用于显隐控件面板
@@ -148,52 +143,79 @@
             panelDisplay(val){
                 this.controlPanelDisplay=val;
             },
-            hoverControlPanel(control,e){
-                var form=this.formDesign.form;               
-                for(var itemIndex=0,itemLength=form.controlList.length;itemIndex<itemLength;itemIndex++){
-                    var curItem=form.controlList[itemIndex];
+
+            /**
+             * 设置编辑边框
+             */
+            setEditBorder(fn){
+                var form=this.getCurrentForm();    
+                var curEdit=this.getCurrentEditControl();
+                each.setAllItem(form.controlList,(obj,key)=>{
+                    var curItem=obj[key];
                     this.$set(curItem,"border","");
-                    for(var controlIndex=0,controlListLength=curItem.controlList.length;controlIndex<controlListLength;controlIndex++){
-                        var curControl=curItem.controlList[controlIndex];
-                        this.$set(curControl,"border","");
-                    }
-                }
-                this.$set(control,"border","1px solid #007ED3");
-                /*
-                var hoverPanel=e.srcElement;
-                var editPanels=document.querySelectorAll(".edit-panel");
-                console.log(0,editPanels);
-                for(var index=0,editPanelLength=editPanels.length;index<editPanelLength;index++){
-                    var curEditPanel=editPanels[index];
-                    console.log("border",curEditPanel.style.cssText);
-                    console.log(curEditPanel.style);
-                    if(curEditPanel.style!==""){
-                          curEditPanel.style="";
-                    }               
-                }
-                hoverPanel.style.cssText="border:1px solid gray";
-                console.log("e",e);
-                console.log("this control",control);
-                console.log(this);
-                */
+                    each.setAllItem(curItem.controlList,(cobj,ckey)=>{
+                        var curControl=cobj[ckey];
+                        if(curEdit._id!=curControl._id){
+                            this.$set(cobj[ckey],"border","");
+                        }
+                    });
+                });
+                if(fn!==undefined){
+                    fn.call(this);
+                }  
             },
-            openEditModel(control,e){
-                console.log(e);
+            /*
+            * 设置浮动边框
+            */
+            hoverControlPanel(control,e,item){
+                this.setEditBorder(()=>{
+                    this.$set(control,"border","1px dotted #007ED3");
+                });
+            },
+            /*
+            * 移出编辑框
+            */
+            outControlPanel(){
+               this.setEditBorder(); 
+            },
+            /*
+            * 当前选中控件进入编辑模式
+            */
+            openEditModel(control){ 
+                this.changeEditControl(control);
+                this.setEditBorder(()=>{
+                    this.$set(control,"border","1px dotted #007ED3");
+                });             
                 console.log("edit model",control);
-                
+            },
+            /*
+            删除控件
+            */
+            removeEditControl(control,item,e){
+                e.stopPropagation();
+                this.removeControl({
+                    item:item,
+                    control:control
+                });
+                console.log("remove editModel",control);
+            },
+            /*
+            * 子组件方法：把新添加的控件加入到编辑模式
+            */
+            childsetedit(control){
+                this.openEditModel(control);
             }
         }
         
-
-        
+    }
 
         /*
         TODO:
-        - .新增控件的组件接口
-        - .控件属性的组件接口
-        - .控件拖拽排序(√)
+        - .新增控件的组件接口（√）
+        - .控件属性的组件接口（DO）
+        - .控件拖拽排序（√）
+        - .控件删除（DO）
         */
-    }
 </script>
 
 <style scoped>
@@ -292,7 +314,7 @@
     display: inline-block;
     width: 70px;
     height: 60px;
-    border: 1px solid #E4E6E9; 
+    border: 1px dotted #E4E6E9; 
     text-align: center;
     margin-top: 20px;
     padding-top: 10px;
@@ -310,6 +332,36 @@
 }
 .c-control-item i{
     font-size: 18px;
+}
+
+.edit-remove{
+    width: 100%;
+    height: 0px;
+    position: absolute;
+    display: none;
+    top:0px;
+
+}
+.edit-btn-remove{
+    width: 15px;
+    height: 15px;
+    background-color: #59a6e8;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    z-index:6;
+    color: white;
+    text-align: center;
+    cursor: pointer;
+  
+}
+.edit-remove{
+    font-size: 12px;
+}
+
+
+.showEditRemove{
+    display: block;
 }
 
 

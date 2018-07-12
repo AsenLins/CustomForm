@@ -6,7 +6,7 @@
             <form-panel></form-panel>
            
         </el-col>
-        <el-col :span="12">
+        <el-col :offset="1" :span="11">
             <form-attr-panel></form-attr-panel>
         </el-col>
       </el-row>

@@ -16,7 +16,9 @@ const state = {
             title: "表单名称",
             controlList: []
         },
-        currentEditControl: {}
+        currentEditControl: {
+            _id: ""
+        }
     })
 }
 

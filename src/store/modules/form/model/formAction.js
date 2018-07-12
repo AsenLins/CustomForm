@@ -7,15 +7,11 @@ const formAction = {
         context.commit("changeEditControl", control);
     },
     addControl(context, control) {
-        console.log("addControl!!");
         context.commit("addControl", control);
     },
     removeControl(context, control) {
         context.commit("removeControl", control);
     },
-
-
-
     modifyEditControl(context, attrObj) {
         context.commit("modifyEditControl", attrObj)
     },

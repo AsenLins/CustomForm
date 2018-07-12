@@ -23,6 +23,7 @@ const formGetters = {
      获取当前编辑表单对象
     */
     getCurrentForm(state, getters, rootState) {
+        console.log(state);
         return state.designForm.form;
     },
     /*

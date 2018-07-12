@@ -55,7 +55,7 @@
 </template>
 
 <script>
-    import '../../../css/iconfont/iconfont.css';
+    import '../../../css/iconfont/baseIcon/iconfont.css';
     import {Controls} from '../model/controls/index';
     import {FormItem} from '../model/container/formItem';
     import {controlType} from '../model/controls/controlsTypeEnum';
@@ -148,7 +148,10 @@
                 }
                
                 newFormItem.add(newControl);
-                this.addControl(newFormItem);
+                this.addControl(newFormItem)
+                .then(()=>{
+                    this.$emit("childsetedit",newControl);
+                });
                 this.closeControlPanel();
                 console.log("newControl",newControl); 
             }
