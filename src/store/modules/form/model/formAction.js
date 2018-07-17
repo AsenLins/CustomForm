@@ -20,7 +20,17 @@ const formAction = {
     },
     setControlVerify(context, rulesObj) {
         context.commit("setControlVerify", rulesObj);
+    },
+    attrOptionDataPush(context, dataObj) {
+        context.commit("attrOptionDataPush", dataObj)
+    },
+    attrOptionChange(context, dataObj) {
+        context.commit("attrOptionChange", dataObj);
+    },
+    attrOptionDataDelete(context, dataObj) {
+        context.commit("attrOptionDataDelete", dataObj);
     }
+
 }
 
 export { formAction }

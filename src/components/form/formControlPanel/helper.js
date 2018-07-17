@@ -5,14 +5,16 @@ const setNewControlAttr = {
     },
     checkBoxGroup: function() {
         this.title = "多选";
-        this.value = "请选择";
+        this.placeholder = "请选择";
     },
     fileUpload: function() {
         this.title = "附件";
     },
     title: function() {
-        this.title = "说明文本";
-        this.placeholder = "请输入";
+        //this.title = undefined;
+        this.placeholder = "说明文字";
+        this.value = "说明文字"
+            //this.placeholder = "请输入";
     },
     number: function() {
         this.title = "数字";
@@ -20,7 +22,7 @@ const setNewControlAttr = {
     },
     radioBoxGroup: function() {
         this.title = "单选";
-        this.value = "请选择";
+        this.placeholder = "请选择";
     },
     multiText: function() {
         this.title = "多行文本";

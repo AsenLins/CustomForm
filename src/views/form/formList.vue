@@ -20,5 +20,12 @@
 </script>
 
 <style scoped>
+.f-design-panel{
+    width: 350px;
+    height: 600px;
+    background-color: #f5f5f5;
+    border-radius: 5px;
+    box-shadow: 1px 1px 16px -3px gray;
+}
 
 </style>

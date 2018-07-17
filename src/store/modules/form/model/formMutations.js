@@ -1,6 +1,8 @@
 import Vue from 'vue';
 import { DesignForm } from './formModel';
 import { formMethod } from './formMethod';
+import uuid from 'uuid/v1';
+
 
 const formMutations = {
     /**
@@ -10,14 +12,20 @@ const formMutations = {
      */
     changeForm(state, form) {
         //console.log("constructor", form.prototype);
-        console.debug("before:【changeForm】", state.designForm.form);
-
+        console.debug("before:【changeForm】", state.designForm);
+        /*
+        Vue.set(state.designForm, "form", form);
+        Vue.set(state.designForm, "currentEditControl", {
+            _id: ""
+        });
+        */
         formMethod.resetVueObj(state.designForm, "form", form);
         formMethod.resetVueObj(state.designForm, "currentEditControl", {
             _id: ""
         })
 
-        console.debug("after:【changeForm】", state.designForm.form);
+
+        console.debug("after:【changeForm】", state.designForm);
     },
 
     /**
@@ -138,6 +146,37 @@ const formMutations = {
         }
 
         console.debug("after:【modifyEditControl】", state.designForm.currentEditControl);
+    },
+    /**
+     * 添加数据属性optionData
+     * @param {当前store对象} state 
+     * @param {添加的对象} payload 
+     */
+    attrOptionDataPush(state, payload) {
+        var newOptionData = {
+            _id: uuid(),
+            value: payload.value
+        }
+        state.designForm.currentEditControl.data.optionData.push(newOptionData);
+    },
+    /**
+     * 
+     * @param {当前store对象} state 
+     * @param {修改的对象} payload 
+     */
+    attrOptionChange(state, payload) {
+        var updateIndex = payload.updateIndex;
+        var updateObj = payload.updateObj;
+        Vue.set(state, designForm, currentEditControl.data.optionData, updateIndex, updateObj);
+    },
+    /**
+     * 
+     * @param {当前store短袖} state 
+     * @param {删除的对象} payload 
+     */
+    attrOptionDataDelete(state, payload) {
+        var removeIndex = payload.removeIndex;
+        Vue.delete(state.designForm.currentEditControl.data.optionData, removeIndex);
     }
 }
 

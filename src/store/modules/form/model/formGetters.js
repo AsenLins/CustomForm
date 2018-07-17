@@ -27,6 +27,12 @@ const formGetters = {
         return state.designForm.form;
     },
     /*
+     获取设计表单对象
+    */
+    getCurrentDesignForm(state, getters, rootState) {
+        return state.designForm;
+    },
+    /*
      获取当前源表单对象：包含json字符串,表单对象
     */
     getOriginForm(state, getters, rootState) {

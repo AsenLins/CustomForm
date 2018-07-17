@@ -20,6 +20,8 @@ class VacationForm {
                 })
                 .add(new Controls.RadioBoxGroup({
                     title: "请假类型",
+                    placeholder: "请选择"
+
                 }))
 
             )

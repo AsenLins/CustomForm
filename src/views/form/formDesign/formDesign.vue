@@ -10,6 +10,13 @@
             <form-attr-panel></form-attr-panel>
         </el-col>
       </el-row>
+      
+      <el-row class="submit-wrap" type="flex" justify="center">
+      
+        <el-col class="submit-line" :span="24">
+            <el-button  @click="createFormObj()"  type="primary">保存</el-button>
+        </el-col>
+      </el-row>
   </el-main>
 </el-container>
 </template>
@@ -35,6 +42,11 @@
         },
         mounted(){
          
+        },
+        methods:{
+            createFormObj(){
+                console.log("create from Obj");
+            }
         }
 
     }
@@ -50,6 +62,12 @@
     border-radius: 5px;
     box-shadow: 1px 1px 19px -4px gray;
 }
-
-
+.submit-line{
+    border-top:2px solid #e4e7ed;
+    padding-top: 16px;
+}
+.submit-wrap{
+    text-align: center;
+    margin-top: 40px;
+}
 </style>

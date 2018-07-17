@@ -12,11 +12,14 @@ class ControlBase extends Base {
             this.placeholder = "请输入" + this.title;
         }
         this.verify = {
-                isNotEmpty: false,
-                rules: []
-            },
-            this.attrs = {},
-            this.data = {}
+            isNotEmpty: false,
+            rules: []
+        }
+        this.attrs = {
+            isPrint: false,
+            isNotEmpty: false
+        }
+        this.data = []
     }
 
     setVerify(verify) {

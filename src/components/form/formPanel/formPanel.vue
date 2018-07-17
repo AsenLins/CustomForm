@@ -48,10 +48,17 @@
                                             autosize
                                         />
 
+                                        <!--说明文字-->
+                                        <vant-title :title="control.value"  v-else-if="control.type===controlType.title" />
+
+
                                         <!--附件-->
                                         <van-cell-group  v-else-if="control.type===controlType.fileUpload">
                                             <van-row>
                                                 <van-cell :value="control.title" />   
+                                            </van-row>
+                                            <van-row>
+                                                <van-cell style="padding-top:0px; padding-bottom:0px; line-height:12px;" :value="control.placeholder" /> 
                                             </van-row>
                                             <van-row>
 
@@ -87,6 +94,7 @@
     import vantPopRadioGroupBox from '../vant/control/vantPopRadioGroupBox.vue';
     import vantPopCheckBoxGroup from '../vant/control/vantPopCheckBoxGroup.vue';
     import vantPopDateTimePicket from '../vant/control/vantPopDateTimePicket.vue';
+    import vantTitle from '../vant/control/vantTitle.vue';
     
     import formControlPanel from '../formControlPanel/formControlPanel';
 
@@ -111,6 +119,7 @@
             vantPopRadioGroupBox,
             vantPopCheckBoxGroup,
             vantPopDateTimePicket,
+            vantTitle,
             formControlPanel,
             draggable,
         },
@@ -362,6 +371,16 @@
 
 .showEditRemove{
     display: block;
+}
+
+
+/*控件样式*/
+.v-upload {
+  border: 1px solid #dfdfdf;
+  padding: 10px;
+  padding-top: 8px;
+  border-radius: 4px;
+  padding-bottom: 3px;
 }
 
 

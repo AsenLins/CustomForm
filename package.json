@@ -15,6 +15,7 @@
         "circular-json": "^0.5.4",
         "element-ui": "^2.4.3",
         "guid": "0.0.12",
+        "lodash": "^4.17.10",
         "material-design-icons": "^3.0.1",
         "muse-ui": "^3.0.0-beta.5",
         "node-sass": "^4.9.0",

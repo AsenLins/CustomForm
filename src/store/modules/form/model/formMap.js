@@ -4,7 +4,8 @@ const formMap = {
         getCurrentEditControl: "form/getCurrentEditControl",
         getCurrentEditAttr: "form/getCurrentEditAttr",
         getCurrentEditVerify: "form/getCurrentEditVerify",
-        getCurrentForm: "form/getCurrentForm"
+        getCurrentForm: "form/getCurrentForm",
+        getCurrentDesignForm: "form/getCurrentDesignForm"
     },
     actions: {
         changeForm: "form/changeForm",
@@ -13,7 +14,10 @@ const formMap = {
         removeControl: "form/removeControl",
         setControlAttr: "form/setControlAttr",
         setControlVerify: "form/setControlVerify",
-        modifyEditControl: "form/modifyEditControl"
+        modifyEditControl: "form/modifyEditControl",
+        attrOptionDataDelete: "form/attrOptionDataDelete",
+        attrOptionChange: "form/attrOptionChange",
+        attrOptionDataPush: "form/attrOptionDataPush"
     }
 }
 
