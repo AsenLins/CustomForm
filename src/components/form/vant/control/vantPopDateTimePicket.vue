@@ -1,6 +1,6 @@
 <template>
     <van-row >
-        <van-cell @click="show(control)" :title="control.title" :value="control.value" is-link />
+        <van-cell @click="show(control)" :title="control.title" :value="control.placeholder" is-link />
         <van-actionsheet  v-model="control.show" :title="control.title">
             <van-datetime-picker @cancel="hide(control)" v-on:change="change"  @confirm="commitSelect(control,$event)" v-model="control.vmodel" :type="dateType" />
         </van-actionsheet>
@@ -34,6 +34,7 @@
                 }else{
                       this.control.value=s.getFullYear()+"-"+(s.getMonth()+1)+"-"+s.getDate();
                 }
+                this.control.placeholder=this.control.value;
                 this.control.show=false;
                 
             },

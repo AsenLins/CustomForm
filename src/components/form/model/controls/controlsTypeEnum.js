@@ -1,18 +1,19 @@
 const controlType = {
-    text: "text",
-    controlList: "controlList",
-    checkBoxGroup: "checkBoxGroup",
-    date: "date",
-    dateAndTime: "dateAndTime",
-    fileUpload: "fileUpload",
-    title: "title",
-    money: "money",
-    multiText: "multiText",
-    number: "number",
-    radioBoxGroup: "radioBoxGroup",
-    checkBox: "checkbox",
-    radio: "radio",
-    controlList: "controlList"
+    text: "TextInput",
+    controlList: "ControlList",
+    checkBoxGroup: "CheckBoxGroup",
+    date: "DateInput",
+    dateAndTime: "DateAndTimeInput",
+    fileUpload: "FileUpload",
+    title: "Title",
+    money: "MoneyInput",
+    multiText: "MultiText",
+    number: "NumInput",
+    radioBoxGroup: "RadioBoxGroup",
+    checkBox: "CheckBox",
+    radio: "Radio",
+    controlList: "ControlList"
 }
+
 
 export { controlType };

@@ -1,6 +1,6 @@
 <template>
     <van-row>
-        <van-cell v-on:click="show(control)" :title="control.title" :value="control.value" is-link />
+        <van-cell v-on:click="show(control)" :title="control.title" :value="control.placeholder" is-link />
         <van-actionsheet v-model="control.show" :title="control.title">
             <van-checkbox-group @change="show(control)" v-model="control.vmodel">
                 <van-cell-group>
@@ -9,7 +9,7 @@
                     </van-cell>
                 </van-cell-group>
                 <van-cell>
-                    <van-button @click="commitSelect(control)" type="primary" bottom-action>确认</van-button>
+                    <van-button @click="commitSelect(control)"  type="primary" bottom-action>确认</van-button>
                 </van-cell>
             </van-checkbox-group>
         </van-actionsheet>
@@ -27,6 +27,7 @@
         methods: {
             commitSelect: function(control) {
                 control.value=control.vmodel.join(',');
+                control.placeholder=control.value;
                 control.show = false;
             }
         }

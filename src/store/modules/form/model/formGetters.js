@@ -23,7 +23,14 @@ const formGetters = {
      获取当前编辑表单对象
     */
     getCurrentForm(state, getters, rootState) {
+        console.log(state);
         return state.designForm.form;
+    },
+    /*
+     获取设计表单对象
+    */
+    getCurrentDesignForm(state, getters, rootState) {
+        return state.designForm;
     },
     /*
      获取当前源表单对象：包含json字符串,表单对象
@@ -33,7 +40,11 @@ const formGetters = {
             str: cjson.stringify(state.designForm.form),
             origin: JSON.parse(cjson.stringify(state.designForm.form))
         }
+    },
+    getFormVerify(state, getters, rootState) {
+        return state.designForm.formVerify;
     }
+
 
 
 }

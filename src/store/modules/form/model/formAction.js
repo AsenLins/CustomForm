@@ -12,9 +12,6 @@ const formAction = {
     removeControl(context, control) {
         context.commit("removeControl", control);
     },
-
-
-
     modifyEditControl(context, attrObj) {
         context.commit("modifyEditControl", attrObj)
     },
@@ -23,7 +20,23 @@ const formAction = {
     },
     setControlVerify(context, rulesObj) {
         context.commit("setControlVerify", rulesObj);
+    },
+    attrOptionDataPush(context, dataObj) {
+        context.commit("attrOptionDataPush", dataObj)
+    },
+    attrOptionChange(context, dataObj) {
+        context.commit("attrOptionChange", dataObj);
+    },
+    attrOptionDataDelete(context, dataObj) {
+        context.commit("attrOptionDataDelete", dataObj);
+    },
+    formVerifyChange(context, dataObj) {
+        context.commit("formVerifyChange", dataObj);
+    },
+    setControlVerifyStatus(context, dataObj) {
+        context.commit("setControlVerifyStatus", dataObj);
     }
+
 }
 
 export { formAction }

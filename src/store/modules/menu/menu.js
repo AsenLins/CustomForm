@@ -3,20 +3,23 @@ const state = {
 }
 
 const getters = {
-    getMenuRouter(state, getters, rootState) {
-
-    }
 }
 
 
 const actions = {
     setMenu(context, param) {
         context.commit("setMenu", param);
+    },
+    getMenuRouter(context,param){
+        
     }
 }
 
 const mutations = {
     setMenu(state, param) {
+
+    },
+    getMenuRouter(state,param){
 
     }
 }

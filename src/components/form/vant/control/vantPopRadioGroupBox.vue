@@ -1,6 +1,6 @@
 <template>
     <van-row>
-        <van-cell v-on:click="show(control)" :title="control.title" :value="control.value" is-link />
+        <van-cell v-on:click="show(control)" :title="control.title" :value="control.placeholder" is-link />
         <van-actionsheet v-model="control.show" :title="control.title">
             <van-radio-group v-model="control.vmodel">
                 <van-cell-group>
@@ -27,6 +27,7 @@
         methods:{
             commitSelect:function(control){
                 control.value=control.vmodel;
+                control.placeholder=control.value;
                 control.show=false;
             }
         }

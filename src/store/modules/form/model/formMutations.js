@@ -1,6 +1,8 @@
 import Vue from 'vue';
 import { DesignForm } from './formModel';
 import { formMethod } from './formMethod';
+import uuid from 'uuid/v1';
+
 
 const formMutations = {
     /**
@@ -10,12 +12,21 @@ const formMutations = {
      */
     changeForm(state, form) {
         //console.log("constructor", form.prototype);
-        console.debug("before:【changeForm】", state.designForm.form);
-
+        console.debug("before:【changeForm】", state.designForm);
+        /*
+        Vue.set(state.designForm, "form", form);
+        Vue.set(state.designForm, "currentEditControl", {
+            _id: ""
+        });
+        */
         formMethod.resetVueObj(state.designForm, "form", form);
-        formMethod.resetVueObj(state.designForm, "currentEditControl", {})
+        formMethod.resetVueObj(state.designForm, "currentEditControl", {
+            _id: ""
+        })
+        formMethod.resetVueObj(state.designForm, "formVerify", {});
 
-        console.debug("after:【changeForm】", state.designForm.form);
+
+        console.debug("after:【changeForm】", state.designForm);
     },
 
     /**
@@ -38,6 +49,7 @@ const formMutations = {
      * @param {要添加的新对象} option 
      */
     addControl(state, control) {
+        console.log("addddddd");
         console.debug("before:【addControl】");
 
         state.designForm.form.controlList.push(control);
@@ -48,9 +60,10 @@ const formMutations = {
      * 删除控件
      * @param {当前store对象} state 
      */
-    removeControl(state, item, control) {
+    removeControl(state, option) {
         console.debug("mutations 【removeControl】");
-
+        var item = option.item;
+        var control = option.control;
         var controlList = item.controlList,
             removeIndex = -1;
 
@@ -62,10 +75,10 @@ const formMutations = {
 
         /*若控件集为空，则把控件的容器也删除 */
         if (controlList.length == 0) {
-            removeIndex = formMethod.getControlIndex(item._id, state.form.controlList);
-            Vue.delete(state.form.controlList, removeIndex);
+            removeIndex = formMethod.getControlIndex(item._id, state.designForm.form.controlList);
+            Vue.delete(state.designForm.form.controlList, removeIndex);
         }
-        console.debug("Delete After Obj", state.form);
+        console.debug("Delete After Obj", state.designForm.form);
     },
     /**
      * 设置对象属性
@@ -134,6 +147,50 @@ const formMutations = {
         }
 
         console.debug("after:【modifyEditControl】", state.designForm.currentEditControl);
+    },
+    /**
+     * 添加数据属性optionData
+     * @param {当前store对象} state 
+     * @param {添加的对象} payload 
+     */
+    attrOptionDataPush(state, payload) {
+        var newOptionData = {
+            _id: uuid(),
+            value: payload.value
+        }
+        state.designForm.currentEditControl.data.optionData.push(newOptionData);
+    },
+    /**
+     * 修改数据对象
+     * @param {当前store对象} state 
+     * @param {修改的对象} payload 
+     */
+    attrOptionChange(state, payload) {
+        var updateIndex = payload.updateIndex;
+        var updateObj = payload.updateObj;
+        Vue.set(state, designForm, currentEditControl.data.optionData, updateIndex, updateObj);
+    },
+    /**
+     * 删除数据对象
+     * @param {当前store对象} state 
+     * @param {删除的对象} payload 
+     */
+    attrOptionDataDelete(state, payload) {
+        var removeIndex = payload.removeIndex;
+        Vue.delete(state.designForm.currentEditControl.data.optionData, removeIndex);
+    },
+    /**
+     * 修改验证对象
+     * @param {当前store对象} state 
+     * @param {表单验证的布尔值true|false} payload 
+     */
+    formVerifyChange(state, payload) {
+        Vue.set(state.designForm, "formVerify", payload);
+    },
+    setControlVerifyStatus(state, payload) {
+
+        Vue.set(state.designForm.currentEditControl, "verifyStatus", payload.verifyStatus);
+
     }
 }
 
