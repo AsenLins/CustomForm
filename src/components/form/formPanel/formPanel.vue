@@ -194,7 +194,9 @@
                 this.changeEditControl(control);
                 this.setEditBorder(()=>{
                     this.$set(control,"border","1px dotted #007ED3");
-                });             
+                });
+                /*调用父组件的验证方法*/             
+                this.$emit("childVerify");
                 console.log("edit model",control);
             },
             /*
@@ -205,6 +207,9 @@
                 this.removeControl({
                     item:item,
                     control:control
+                });
+                this.changeEditControl({
+                    _id:""
                 });
                 console.log("remove editModel",control);
             },

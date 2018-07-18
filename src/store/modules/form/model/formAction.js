@@ -29,6 +29,12 @@ const formAction = {
     },
     attrOptionDataDelete(context, dataObj) {
         context.commit("attrOptionDataDelete", dataObj);
+    },
+    formVerifyChange(context, dataObj) {
+        context.commit("formVerifyChange", dataObj);
+    },
+    setControlVerifyStatus(context, dataObj) {
+        context.commit("setControlVerifyStatus", dataObj);
     }
 
 }

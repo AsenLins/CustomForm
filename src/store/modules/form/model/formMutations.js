@@ -23,6 +23,7 @@ const formMutations = {
         formMethod.resetVueObj(state.designForm, "currentEditControl", {
             _id: ""
         })
+        formMethod.resetVueObj(state.designForm, "formVerify", {});
 
 
         console.debug("after:【changeForm】", state.designForm);
@@ -160,7 +161,7 @@ const formMutations = {
         state.designForm.currentEditControl.data.optionData.push(newOptionData);
     },
     /**
-     * 
+     * 修改数据对象
      * @param {当前store对象} state 
      * @param {修改的对象} payload 
      */
@@ -170,13 +171,26 @@ const formMutations = {
         Vue.set(state, designForm, currentEditControl.data.optionData, updateIndex, updateObj);
     },
     /**
-     * 
-     * @param {当前store短袖} state 
+     * 删除数据对象
+     * @param {当前store对象} state 
      * @param {删除的对象} payload 
      */
     attrOptionDataDelete(state, payload) {
         var removeIndex = payload.removeIndex;
         Vue.delete(state.designForm.currentEditControl.data.optionData, removeIndex);
+    },
+    /**
+     * 修改验证对象
+     * @param {当前store对象} state 
+     * @param {表单验证的布尔值true|false} payload 
+     */
+    formVerifyChange(state, payload) {
+        Vue.set(state.designForm, "formVerify", payload);
+    },
+    setControlVerifyStatus(state, payload) {
+
+        Vue.set(state.designForm.currentEditControl, "verifyStatus", payload.verifyStatus);
+
     }
 }
 

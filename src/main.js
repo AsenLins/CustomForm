@@ -18,12 +18,32 @@ import router from './router'
 /*store */
 import store from './store/index';
 
+/*插件*/
+import VeeValidate from 'vee-validate';
+
+//import Vuelidate from 'vuelidate';
+//import VueValidator from 'vue-validator';
+
+
+const config = {
+    errorBagName: 'errors', // change if property conflicts
+    fieldsBagName: 'formfields',
+    events: "input|blur|custom"
+};
+
+
+
+
 console.log(store);
 
 
 /*引入插件 */
 Vue.use(ElementUI);
 Vue.use(Vant);
+Vue.use(VeeValidate, config);
+//Vue.use(Vuelidate);
+//Vue.use(VueValidator)
+
 Vue.config.productionTip = false
 
 

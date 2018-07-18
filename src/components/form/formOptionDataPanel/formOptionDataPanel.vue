@@ -1,17 +1,16 @@
 <template>
 
-    <div>
-        <template v-if="optionData.length>0">
+    <div v-if="optionData.length>0">
                 <el-row v-for="(dataItem,index) in optionData" :key="dataItem._id" >
                     <el-col :span="12">
-                        <el-input placeholder="选项名称"  @change="dataChange(dataItem,index)" size="mini" v-model="dataItem.value" ></el-input>
+                        <el-input :key="dataItem.id" placeholder="选项名称" v-validate="'required'" :name="dataItem._id"  @change="dataChange(dataItem,index)" size="mini" v-model="dataItem.value" ></el-input>
+                        <span v-if="errors.has(dataItem._id)" class="error">请输入选项名称</span>
                     </el-col>
                     <el-col class="data-option" :offset="1" :span="11">
                         <i @click="dataLess(dataItem,index)" :class="{'data-option-cantUse':optionData.length<=1}" class="el-icon-remove data-option-less"></i>
                         <i @click="dataAdd(dataItem,index)" class="el-icon-circle-plus data-option-add"></i>
                     </el-col>
                 </el-row>
-        </template>
     </div>
 
 </template>
@@ -62,7 +61,14 @@
                 this.attrOptionDataPush({
                     value:val
                 });
+                
                 //attrOptionDataPush attrOptionChange attrOptionDataDelete
+            },
+            /**
+             * 父组件方法,用于验证当前域的字段验证。
+             */
+            parentVerify(){
+                return this.$validator.validateAll();
             }
         }
     }
@@ -87,6 +93,13 @@
 }
 .data-option-cantUse{
     color:#eeeeee;
+}
+
+/*验证*/
+.error{
+    color: #f56c6c;
+    font-weight: bold;
+    font-size: 12px;
 }
 
 

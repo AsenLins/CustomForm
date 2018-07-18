@@ -40,7 +40,11 @@ const formGetters = {
             str: cjson.stringify(state.designForm.form),
             origin: JSON.parse(cjson.stringify(state.designForm.form))
         }
+    },
+    getFormVerify(state, getters, rootState) {
+        return state.designForm.formVerify;
     }
+
 
 
 }
