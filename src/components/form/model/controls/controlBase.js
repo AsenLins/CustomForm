@@ -19,7 +19,9 @@ class ControlBase extends Base {
             isPrint: false,
             isNotEmpty: false
         }
-        this.data = []
+        this.data = {
+            optionData: []
+        }
     }
 
     setVerify(verify) {

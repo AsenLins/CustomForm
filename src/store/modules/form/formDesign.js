@@ -18,8 +18,7 @@ const state = {
         },
         currentEditControl: {
             _id: ""
-        },
-        formVerify: {}
+        }
     })
 }
 
