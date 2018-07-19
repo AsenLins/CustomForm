@@ -7,7 +7,7 @@
               
                              <template v-for="control in item.controlList">
 
-                                    <div :style="{border:control.border}"  v-on:mouseout="outControlPanel()"  v-on:mouseover="hoverControlPanel(control,$event,item)"  :control="control" :key="control._id" @click="openEditModel(control,$event)" class="edit-panel">
+                                    <div :class="{showEdit:control.border,showError:control.isError}" :style="{border:control.border}"  v-on:mouseout="outControlPanel()"  v-on:mouseover="hoverControlPanel(control,$event,item)"  :control="control" :key="control._id" @click="openEditModel(control,$event)" class="edit-panel">
                                         <!--遮罩层-->
                                         <div class="edit-mask" ></div>
                                         <div class="edit-remove" :class="{showEditRemove:control._id===formDesign.currentEditControl._id}" >
@@ -130,9 +130,6 @@
                 controlType:controlType               
             }
         },
-        computed:{
-
-        },
         mounted(){               
                var vacationForm=templateFactory["vacationForm"]();
                this.changeForm(vacationForm);
@@ -178,7 +175,7 @@
             */
             hoverControlPanel(control,e,item){
                 this.setEditBorder(()=>{
-                    this.$set(control,"border","1px dotted #007ED3");
+                    this.$set(control,"border",true);
                 });
             },
             /*
@@ -190,14 +187,25 @@
             /*
             * 当前选中控件进入编辑模式
             */
-            openEditModel(control){ 
-                this.changeEditControl(control);
-                this.setEditBorder(()=>{
-                    this.$set(control,"border","1px dotted #007ED3");
-                });
+            openEditModel(control){
+                this.$emit("childVerify",(result)=>{
+                    if(result){
+                        this.changeEditControl(control);
+                        this.setEditBorder(()=>{
+                            this.$set(control,"border",true);
+                        });
+                        console.log("edit model",control);
+                    }else{
+                        this.mix_g_notice({
+                            mes:"表单模板格式不正确,请修改后再试。",
+                            type:"warning"
+                        });                        
+                    }
+                })
+
                 /*调用父组件的验证方法*/             
-                this.$emit("childVerify");
-                console.log("edit model",control);
+                
+             
             },
             /*
             删除控件
@@ -248,7 +256,7 @@
 
 .c-drag-panel{
     height: 560px;
-    overflow-y:auto;
+    overflow:auto;
 }
 
 .el-icon-plus{
@@ -378,6 +386,14 @@
     display: block;
 }
 
+.showEdit{
+    border-color:#007ED3;
+}
+
+.showError{
+    border-color:red;
+}
+
 
 /*控件样式*/
 .v-upload {
@@ -387,6 +403,8 @@
   border-radius: 4px;
   padding-bottom: 3px;
 }
+
+
 
 
 

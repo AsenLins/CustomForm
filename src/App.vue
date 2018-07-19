@@ -3,6 +3,13 @@
   <div id="app">
   
     <router-view/>
+     <!--全局弹出框-->
+     <keep-alive>
+      <el-button plain>
+      </el-button>
+     </keep-alive>
+    <!--全局提示框-->
+       
   </div>
 </template>
 

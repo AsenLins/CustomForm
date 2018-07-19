@@ -38,6 +38,7 @@ const formMutations = {
     changeEditControl(state, control) {
         console.debug("before:【changeEditControl】", control);
 
+        //Vue.set(state.designForm, "currentEditControl", control);
         formMethod.resetVueObj(state.designForm, "currentEditControl", control);
 
         console.debug("after:【changeEditControl】", state.designForm.currentEditControl);
@@ -188,8 +189,8 @@ const formMutations = {
         Vue.set(state.designForm, "formVerify", payload);
     },
     setControlVerifyStatus(state, payload) {
-
-        Vue.set(state.designForm.currentEditControl, "verifyStatus", payload.verifyStatus);
+        console.log("payload", payload);
+        Vue.set(state.designForm.currentEditControl, "isError", payload);
 
     }
 }

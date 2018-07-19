@@ -44,7 +44,7 @@
         },
         data(){
             return{
-                activeName:"formDesign"
+                activeName:"formRule"
             }
         }, 
     }

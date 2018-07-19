@@ -6,7 +6,8 @@ const formMap = {
         getCurrentEditVerify: "form/getCurrentEditVerify",
         getCurrentForm: "form/getCurrentForm",
         getCurrentDesignForm: "form/getCurrentDesignForm",
-        getFormVerify: "form/getFormVerify"
+        getFormVerify: "form/getFormVerify",
+        getOriginForm: "form/getOriginForm"
     },
     actions: {
         changeForm: "form/changeForm",

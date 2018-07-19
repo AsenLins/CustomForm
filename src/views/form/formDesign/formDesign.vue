@@ -1,11 +1,7 @@
 <template>
 <el-container>
   <el-main>
-
-    
-
       <el-row type="flex" >
-        
         <el-col class="f-design-panel" :span="12">
             <form-panel @childVerify="childVerify"></form-panel>
            
@@ -18,7 +14,7 @@
       <el-row class="submit-wrap" type="flex" justify="center">
       
         <el-col class="submit-line" :span="24">
-            <el-button  @click="saveForm()"  type="primary">保存</el-button>
+            <el-button  @click="saveForm()" :loading="submitButton.loading"  type="primary">{{submitButton.text}}</el-button>
         </el-col>
       </el-row>
   
@@ -41,44 +37,60 @@
         },
         data(){
           return{
-             formVerify:{}
+             formVerify:{},
+             submitButton:{
+                loading:false,
+                text:"提交"
+             }             
           }
         },
-        mounted(){
-             //this.formVerify=this.getFormVerify();     
-        },
-    
         methods:{
             ...mapActions(formMap.actions),
             ...mapGetters(formMap.getters),
             /** 
              * 保存表单
             */
+            submitBtnChangeStatus(option){
+                this.submitButton.loading=option.status;
+                this.submitButton.text=option.text;              
+            },
             saveForm(){
-                //console.log("valort",this.$validator);
+                /*
+                this.submitBtnChangeStatus({
+                    status:true,
+                    text:"加载中"
+                });
+                */
                 this.$refs.formAttrPanel.parentVerify().then((result)=>{
+                    if(result){
+                        this.mix_g_notice({
+                            mes:"保存成功",
+                            type:"success"
+                         });
+                        var form=this.getOriginForm();
+                        console.log("保存的表单是",form);
+                    }else{
+                         this.mix_g_notice({
+                            mes:"表单模板格式不正确,请修改后再试。",
+                            type:"warning"
+                         });                       
+                    }
                     console.log("验证结果",result);
                 });
-                /*
-                if(this.formVerify.$invalid){
-                    console.log("验证不通过");
-                }
-                console.log("touch",this.formVerify.$touch);
-            
-                console.log("$params",this.formVerify.formDesign.form.$each);
-                console.log("$iter",this.formVerify.$iter);
-                console.log("$each",this.formVerify.$each);
-                console.log("$v",this.formVerify);
-                console.log("objSave");
-                */
+
             },
             /*
             * 子组件的方法验证
             */
-            childVerify(){
+            childVerify(fn){
+       
+                
                 setTimeout(() => {
-                 this.$refs.formAttrPanel.parentVerify();                       
+                 this.$refs.formAttrPanel.parentVerify().then((result)=>{
+                     fn.call(this,result);
+                 });                       
                 }, 50);
+                
 
             }
         }

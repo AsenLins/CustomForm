@@ -20,6 +20,11 @@ import store from './store/index';
 
 /*插件*/
 import VeeValidate from 'vee-validate';
+//import Notifications from 'vue-notification'
+
+
+/*mix */
+import mixNotice from './mixins/notice';
 
 //import Vuelidate from 'vuelidate';
 //import VueValidator from 'vue-validator';
@@ -41,10 +46,14 @@ console.log(store);
 Vue.use(ElementUI);
 Vue.use(Vant);
 Vue.use(VeeValidate, config);
+//Vue.use(Notifications);
 //Vue.use(Vuelidate);
 //Vue.use(VueValidator)
 
+Vue.mixin(mixNotice);
+
 Vue.config.productionTip = false
+
 
 
 new Vue({

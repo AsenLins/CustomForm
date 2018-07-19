@@ -1,13 +1,12 @@
 <template>
-
-    <div v-if="optionData.length>0">
-                <el-row v-for="(dataItem,index) in optionData" :key="dataItem._id" >
+    <div v-if="formDesign.currentEditControl.data.optionData.length>0">
+                <el-row v-for="(dataItem,index) in formDesign.currentEditControl.data.optionData" :key="dataItem._id" >
                     <el-col :span="12">
-                        <el-input :key="dataItem.id" placeholder="选项名称" v-validate="'required'" :name="dataItem._id"  @change="dataChange(dataItem,index)" size="mini" v-model="dataItem.value" ></el-input>
+                        <el-input v-on:change="mix_controlVerify()" :key="dataItem.id" placeholder="选项名称" v-validate="'required'" :name="dataItem._id"  @change="dataChange(dataItem,index)" size="mini" v-model="dataItem.value" ></el-input>
                         <span v-if="errors.has(dataItem._id)" class="error">请输入选项名称</span>
                     </el-col>
                     <el-col class="data-option" :offset="1" :span="11">
-                        <i @click="dataLess(dataItem,index)" :class="{'data-option-cantUse':optionData.length<=1}" class="el-icon-remove data-option-less"></i>
+                        <i @click="dataLess(dataItem,index)" :class="{'data-option-cantUse':formDesign.currentEditControl.data.optionData.length<=1}" class="el-icon-remove data-option-less"></i>
                         <i @click="dataAdd(dataItem,index)" class="el-icon-circle-plus data-option-add"></i>
                     </el-col>
                 </el-row>
@@ -19,8 +18,9 @@
     import formMap from '../../../store/modules/form/model/formMap';
     import form from '../../../store/modules/form/formDesign';   
     import { mapActions, mapGetters } from 'vuex';
-
+    import mixVerify from '../mixins/verify';
     export default {
+        mixins:[mixVerify],
         name: "formOptionDataPanel",
         data(){
             return {
@@ -32,9 +32,11 @@
         },
         beforeMount(){
             this.formDesign=this.getCurrentDesignForm();
-            this.optionData=this.formDesign.currentEditControl.data.optionData;
-            if(this.optionData.length==0){
-                this.dataAdd();
+            this.dataInit();
+        },
+        watch:{
+            formDesign(){
+                this.dataInit();
             }
         },
         methods:{
@@ -42,19 +44,28 @@
             ...mapGetters(formMap.getters),
             dataLess(dataItem,index){
 
-                if(this.optionData.length-1<=0){
+                if(this.formDesign.currentEditControl.data.optionData.length-1<=0){
+                    this.mix_g_notice({
+                        mes:"至少要有一个选项",
+                        type:"warning"
+                    });
                     return;
                 }
                 this.attrOptionDataDelete({
                     removeIndex:index
                 })
             },
+            dataInit(){
+                if(this.formDesign.currentEditControl.data.optionData.length==0){
+                    this.dataAdd();
+                }  
+            },
             dataChange(dataItem,index){
                 console.log("change");
             },
             dataAdd(){
                 var val="";
-                if(this.optionData.length==0){
+                if(this.formDesign.currentEditControl.data.optionData.length==0){
                     val="选项1"
                 }
                 this.addIndex=this.addIndex+1;

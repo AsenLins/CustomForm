@@ -36,6 +36,7 @@ const formGetters = {
      获取当前源表单对象：包含json字符串,表单对象
     */
     getOriginForm(state, getters, rootState) {
+        console.log(state.designForm.form);
         return {
             str: cjson.stringify(state.designForm.form),
             origin: JSON.parse(cjson.stringify(state.designForm.form))
