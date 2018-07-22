@@ -19,16 +19,39 @@
         <el-row type="flex" justify="center">
             <el-button  type="primary">保存</el-button>
         </el-row>
+        
+        <form-contact-panel ref="formContactPanel"></form-contact-panel>
     </div>
 </template>
 
 <script>
+    import formContactPanel from '../../../components/formRule/formContactPanel/formContactPanel';
     export default {
+        components:{
+            formContactPanel
+        },
         name: "formRule",
         data(){
             return{
                 send:"提交申请时抄送"
             }
+        },
+        beforeMount(){
+            /*
+            window.addEventListener("message",function(data){
+                console.log("收到的Message",data);
+            });
+            */
+        },
+        mounted(){
+            console.log("挂在");
+            /*
+            this.$refs.formContactPanel.init("contactFrame");
+            this.$refs.formContactPanel.onMessage("getMessage",(data)=>{
+              
+            });
+            */
+
         }
 
     }

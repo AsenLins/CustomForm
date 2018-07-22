@@ -9,7 +9,6 @@
       </el-button>
      </keep-alive>
     <!--全局提示框-->
-       
   </div>
 </template>
 
@@ -18,6 +17,7 @@
 export default {
   name: 'App'
 }
+
 </script>
 <style>
  #app{
