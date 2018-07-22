@@ -10,16 +10,13 @@ class formContact{
         var eventLength=this.event.length;
         var events=this.event;
         console.log("初始化",window);
-        /*
-        window.addEventListener("message",(data)=>{
-            console.log("data is",data);
-           
+        
+        window.addEventListener("message",(data)=>{          
             for(var index=0;index<events.length;index++){
-                console.log("index",events[index]);
                 events[index].fn.call(this,data);
             }
         });
-        */
+        
     }
     listenMes(eventName,fn){
         this.event.push({

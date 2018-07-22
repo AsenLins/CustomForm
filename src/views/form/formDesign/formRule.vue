@@ -19,8 +19,13 @@
         <el-row type="flex" justify="center">
             <el-button  type="primary">保存</el-button>
         </el-row>
+
+        <el-dialog :open="testOpen()"  title="收货地址" :visible.sync="displayContact">
+            <form-contact-panel v-if="displayContact" ref="formContactPanel"></form-contact-panel>
+        </el-dialog>
+
         
-        <form-contact-panel ref="formContactPanel"></form-contact-panel>
+        
     </div>
 </template>
 
@@ -33,27 +38,32 @@
         name: "formRule",
         data(){
             return{
-                send:"提交申请时抄送"
+                send:"提交申请时抄送",
+                displayContact:true
             }
-        },
-        beforeMount(){
-            /*
-            window.addEventListener("message",function(data){
-                console.log("收到的Message",data);
-            });
-            */
         },
         mounted(){
             console.log("挂在");
-            /*
-            this.$refs.formContactPanel.init("contactFrame");
-            this.$refs.formContactPanel.onMessage("getMessage",(data)=>{
-              
-            });
-            */
 
+        },
+        methods:{
+            delayRefs(fn){
+                setTimeout(() => {
+                    fn.call(this);
+                }, 50);
+            },
+            testOpen(){
+                console.log("open",this.$refs);
+                this.delayRefs(()=>{
+                    if(this.$refs.formContactPanel===undefined){
+                        return;
+                    }
+                    this.$refs.formContactPanel.onMessage("getMessage",(data)=>{
+                        console.log(data);
+                    });  
+                })
+            }
         }
-
     }
 </script>
 

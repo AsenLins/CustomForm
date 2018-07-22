@@ -65,17 +65,12 @@
         },
         mounted(){
             console.log("子组件挂载");
-
         },
         methods:{
             frameIsReady(){
                 console.log("ready");
                 formContact.init("contactFrame");
                 formContact.postMes("init");
-                window.addEventListener("message",function(data){
-                    console.log("message",data);
-                });
-
             },
             init(frameId){
                 formContact.init(frameId);
