@@ -15,7 +15,9 @@ const formRuleMap = {
         resetCacheSelect: "formRule/resetCacheSelect",
         setSingleApprover: "formRule/setSingleApprover",
         setSingleSend: "formRule/setSingleSend",
-        resetCacheAll: "formRule/resetCacheAll"
+        resetCacheAll: "formRule/resetCacheAll",
+        removeCacheUser:"formRule/removeCacheUser",
+        removeCacheDepartment:"formRule/removeCacheDepartment"
     }
 }
 

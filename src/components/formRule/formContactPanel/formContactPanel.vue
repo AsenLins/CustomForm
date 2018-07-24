@@ -22,12 +22,12 @@
                             </el-col>
                             <el-col :span="20">{{visibleObj.name}}</el-col>
                             <el-col class="c-select-close" :span="2">
-                                <i class="el-icon-close"></i>
+                                <i @click="deleteSelectUser(visibleObj.userid)" class="el-icon-close"></i>
                             </el-col>
                         </el-row>
                         <el-row
                             v-for="visibleObj in formRuleHelper.cacheSelect.department"
-                            :key="visibleObj.userid"
+                            :key="visibleObj.Id"
                             class="c-select-item">
                             <el-col :span="2">
                                 <i class="icon iconfont icon-bumen"></i>
@@ -35,7 +35,7 @@
                             <el-col :span="20">{{visibleObj.name}}
                             </el-col>
                             <el-col class="c-select-close" :span="2">
-                                <i class="el-icon-close"></i>
+                                <i @click="deleteSelectDepartment(visibleObj.Id)" class="el-icon-close"></i>
                             </el-col>
                         </el-row>
                     </div>
@@ -125,6 +125,23 @@
              */
             changeSelectModel(selectModel) {
                 formContact.postMes({optionType: "changeSelectMode", selectType: selectModel})
+            },
+            /**
+             * 删除已选择用户
+             */
+            deleteSelectUser(userId){
+                console.log("removeUserId",userId);
+                this.removeCacheUser({userId:userId});
+                this.removeSelectUser(userId);
+                //this.resetCacheSelect();
+            },
+            /**
+             * 删除已选择部门
+             */
+            deleteSelectDepartment(departmentId){
+                this.removeCacheDepartment({departmentId:departmentId});
+                this.removeSelectDepartment(departmentId);
+                
             }
         }
     }

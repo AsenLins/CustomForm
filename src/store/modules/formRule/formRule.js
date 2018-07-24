@@ -101,9 +101,15 @@ const actions = {
     },
     resetCacheAll(context, payload) {
         context.commit("resetCacheAll", payload);
+    },
+    removeCacheUser(context,payload){
+        context.commit("removeCacheUser",payload);
+    },
+    removeCacheDepartment(context,payload){
+        context.commit("removeCacheDepartment",payload);
     }
 
-
+   
 }
 
 const mutations = {
@@ -223,6 +229,22 @@ const mutations = {
     resetCacheAll(state, payload) {
         state.formRuleHelper.cacheApprover.approverType = "boss";
         state.formRuleHelper.cacheSend.sendType = "boss";
+    },
+    /**
+     * 删除指定人员的cacheSelect缓存对象
+     * @param {当前store对象} state 
+     * @param {人员ID} payload 
+     */
+    removeCacheUser(state,payload){
+        Vue.delete(state.formRuleHelper.cacheSelect.users,payload.userId);
+    },
+    /**
+     * 删除指定部门ID的cacheSelect缓存对象
+     * @param {当前store对象} state 
+     * @param {部门ID} payload 
+     */
+    removeCacheDepartment(state,payload){
+        Vue.delete(state.formRuleHelper.cacheSelect.department,payload.departmentId);
     }
 }
 

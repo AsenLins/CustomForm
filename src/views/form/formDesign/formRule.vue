@@ -20,7 +20,7 @@
                     </div>
                 </div>
 
-                <div @click="showAndInitApprover()" class="c-btn-add">
+                <div @click="showAndInitApprover()" class="c-btn-add" :class="{'c-btn-more':formRule.approver.approverList.length>0}" >
                     <i class="el-icon-plus"></i>
                 </div>
 
@@ -95,15 +95,22 @@
 </template>
 
 <script>
-/** 
- *         formId:"",
-        visibleUser:{},
-        approver:{},
-        sendList:{},
-        sendListConfig:{}
- * 
- * boss single all single
-*/
+    /**
+     * 2017-7-24 TODO
+     * 可见范围的用户列表和部门读取，删除
+     * 默认审批的人用户列表读取，删除
+     * 抄送人的用户列表读取，删除
+     * 
+     * 联系人弹出宽的用户和部门读取
+     * 
+     * 读取表单规则源对象。
+     * 设置表单规则对象。
+     * 
+     * 验证表单规则对象，可见范围不能为空。
+     */
+
+
+
     import formContactPanel from '../../../components/formRule/formContactPanel/formContactPanel';
     import formRuleMap from '../../../store/modules/formRule/formRuleMap';
     import {mapActions,mapGetters} from 'vuex';
@@ -170,6 +177,15 @@
             },
             saveVisibleUser(){
                 var cacheSelect=this.formRuleHelper.cacheSelect;
+                var chioseUser=this.getFirstUser(cacheSelect.users);
+                var chioseDepartMent=this.getFirstUser(cacheSelect.department);
+                if(chioseUser===undefined&&chioseDepartMent===undefined){
+                        this.mix_g_message({
+                            mes:"请选择一个成员或部门",
+                            type:"warning"
+                        });
+                        return;                     
+                }
                 this.setVisibleUser({
                         users:cacheSelect.users,
                         department:cacheSelect.department
@@ -268,6 +284,9 @@
         border-radius: 6px;
         cursor: pointer;
     }
+    .c-btn-more{
+        margin-left: 15px;
+    }
 
     .c-rule-approval{
         margin-bottom: 20px;
@@ -275,7 +294,7 @@
     .c-approval-item{
         display: inline-block;
         width: 50px;
-        height: 50px;
+        height: 80px;
         vertical-align: top;
         cursor: move;
         line-height: 0px;
@@ -300,6 +319,7 @@
     }
     .c-approval-conect{
         display: inline-block;
+        vertical-align: top;
     }
     .c-approval-conect{
         padding-top:4px;
