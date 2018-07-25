@@ -51,12 +51,17 @@
     import formRuleMap from '../../../store/modules/formRule/formRuleMap';
     import {mapActions, mapGetters} from 'vuex';
     import formContact from './formContact';
+
+
+
     export default {
         name: "formContactPanel",
         data() {
             return {
                 contactUrl: "http://hq.centanet.com/WechatApply/Contact/SelectContactCommon", //公用联系人地址
-                formRuleHelper: {}
+                formRuleHelper: {},
+                unprocessed:[]
+
             }
         },
         props:{
@@ -79,6 +84,10 @@
                     optionType: "changeSelectMode", 
                     selectType: this.selectType
                 });
+                for(var index=0;index<this.unprocessed.length;index++){
+                    var curFnObj= this.unprocessed.pop();
+                    curFnObj.fn.apply(this,curFnObj.param);
+                }
             },
             init(frameId) {
                 formContact.init(frameId);
@@ -93,9 +102,16 @@
              * 设置以选择的部门和人员
              */
             setSelectUserAndDepartMent(users, departments) {
+                
                 formContact.postMes(
                     {optionType: "setSelectUserAndDepartment", departments: departments, users: users}
                 );
+            },
+            addUnprocessed(fn,param){
+                this.unprocessed.push({
+                    fn:fn, 
+                    param:param
+                });
             },
             /**
              * 根据Id删除已选择的部门人员

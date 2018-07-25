@@ -2,7 +2,7 @@
         <div class="c-form-wrap">
    
          <van-nav-bar  class="c-form-title" :title="formDesign.form.title"/>  
-            <draggable class="c-drag-panel"  v-model="formDesign.form.controlList" :options="{group:'control'}" @start="drag=true" @end="drag=false"> 
+            <draggable class="c-drag-panel"  v-model="formDesign.form.controlList" :options="{group:'control'}" @start="drag=true" @end="drag=true"> 
             <van-cell-group  style="  position: relative; top:0px;" class="c-form-item" v-for="item in formDesign.form.controlList" :key="item._id" >
               
                              <template v-for="control in item.controlList">

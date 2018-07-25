@@ -1,10 +1,13 @@
 const formRuleMap = {
     getters: {
         getFormRule: "formRule/getFormRule",
-        getFormRuleHelper: "formRule/getFormRuleHelper"
+        getFormRuleHelper: "formRule/getFormRuleHelper",
+        getOriginFormRule: "formRule/getOriginFormRule",
+        getFormRuleDesign: "formRule/getFormRuleDesign"
     },
     actions: {
         changeFormRule: "formRule/changeFormRule",
+        resetFormRule: "formRule/resetFormRule",
         setFormId: "formRule/setFormId",
         setVisibleUser: "formRule/setVisibleUser",
         setApprover: "formRule/setApprover",
@@ -16,8 +19,12 @@ const formRuleMap = {
         setSingleApprover: "formRule/setSingleApprover",
         setSingleSend: "formRule/setSingleSend",
         resetCacheAll: "formRule/resetCacheAll",
-        removeCacheUser:"formRule/removeCacheUser",
-        removeCacheDepartment:"formRule/removeCacheDepartment"
+        removeCacheUser: "formRule/removeCacheUser",
+        removeCacheDepartment: "formRule/removeCacheDepartment",
+        setCacheUserSelect: "formRule/setCacheUserSelect",
+        setCacheDepartmentSelect: "formRule/setCacheDepartmentSelect",
+        removeApproverUser: "formRule/removeApproverUser",
+        removeSendUser: "formRule/removeSendUser"
     }
 }
 
