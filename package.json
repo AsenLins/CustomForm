@@ -12,6 +12,7 @@
         "build-storybook": "build-storybook"
     },
     "dependencies": {
+        "axios": "^0.18.0",
         "circular-json": "^0.5.4",
         "element-ui": "^2.4.3",
         "guid": "0.0.12",
@@ -19,6 +20,7 @@
         "material-design-icons": "^3.0.1",
         "muse-ui": "^3.0.0-beta.5",
         "node-sass": "^4.9.0",
+        "qs": "^6.5.2",
         "uuid": "^3.3.2",
         "vant": "^1.1.7",
         "vee-validate": "^2.1.0-beta.6",

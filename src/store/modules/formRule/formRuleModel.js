@@ -1,5 +1,5 @@
 import uuid from "uuid/v1";
-class formRuleModel {
+class FormRuleModel {
     constructor() {
         this.formId = uuid();
         this.visibleUser = {
@@ -16,4 +16,4 @@ class formRuleModel {
     }
 }
 
-export default formRuleModel;
+export default FormRuleModel;

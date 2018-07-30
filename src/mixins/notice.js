@@ -13,6 +13,12 @@ const notice = {
                 type: option.type
             });
         },
+        mix_g_showMessage(mes, type) {
+            this.$message({
+                message: mes,
+                type: type
+            });
+        }
     }
 }
 

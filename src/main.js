@@ -26,6 +26,8 @@ import VeeValidate from 'vee-validate';
 /*mix */
 import mixNotice from './mixins/notice';
 
+import axios from './api/config/axiosConfig';
+
 //import Vuelidate from 'vuelidate';
 //import VueValidator from 'vue-validator';
 
@@ -46,6 +48,7 @@ console.log(store);
 Vue.use(ElementUI);
 Vue.use(Vant);
 Vue.use(VeeValidate, config);
+
 //Vue.use(Notifications);
 //Vue.use(Vuelidate);
 //Vue.use(VueValidator)
@@ -53,6 +56,7 @@ Vue.use(VeeValidate, config);
 Vue.mixin(mixNotice);
 
 Vue.config.productionTip = false
+Vue.prototype.$http = axios;
 
 
 
